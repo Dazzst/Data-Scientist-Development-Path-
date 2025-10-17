@@ -11,9 +11,9 @@
 
 ## 数据分析基础 Basic Data Analysis
 - 编程与开发工具 Programming and Development Tools
-  ----Python:掌握基础语法、数据结构，特别是用于数据处理的库，如 Pandas (数据操作与清洗) 和 NumPy (数值计算)。
-  ----SQL:熟练掌握 SELECT、FROM、WHERE、GROUP BY、JOIN 等查询语言，用于从数据库中提取和操作数据。
-  ----R 语言 (可选):作为统计分析和可视化的补充工具。
+----Python:掌握基础语法、数据结构，特别是用于数据处理的库，如 Pandas (数据操作与清洗) 和 NumPy (数值计算)。
+----SQL:熟练掌握 SELECT、FROM、WHERE、GROUP BY、JOIN 等查询语言，用于从数据库中提取和操作数据。
+----R 语言 (可选):作为统计分析和可视化的补充工具。
   ----Excel:掌握基础操作、核心函数（如 VLOOKUP/XLOOKUP）、数据透视表和基础可视化，用于快速数据处理和分析验证。
 - 数据分析
   ----数据采集与导入: 了解不同数据源（如CSV、JSON、API、数据库）的读取和导入方法。
