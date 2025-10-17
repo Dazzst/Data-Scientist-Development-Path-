@@ -11,50 +11,50 @@
 
 ## 数据分析基础 Basic Data Analysis
 - 编程与开发工具 Programming and Development Tools
-  --Python:掌握基础语法、数据结构，特别是用于数据处理的库，如 Pandas (数据操作与清洗) 和 NumPy (数值计算)。
-  --SQL:熟练掌握 SELECT、FROM、WHERE、GROUP BY、JOIN 等查询语言，用于从数据库中提取和操作数据。
-  --R 语言 (可选):作为统计分析和可视化的补充工具。
-  --Excel:掌握基础操作、核心函数（如 VLOOKUP/XLOOKUP）、数据透视表和基础可视化，用于快速数据处理和分析验证。
+  ----Python:掌握基础语法、数据结构，特别是用于数据处理的库，如 Pandas (数据操作与清洗) 和 NumPy (数值计算)。
+  ----SQL:熟练掌握 SELECT、FROM、WHERE、GROUP BY、JOIN 等查询语言，用于从数据库中提取和操作数据。
+  ----R 语言 (可选):作为统计分析和可视化的补充工具。
+  ----Excel:掌握基础操作、核心函数（如 VLOOKUP/XLOOKUP）、数据透视表和基础可视化，用于快速数据处理和分析验证。
 - 数据分析
-  --数据采集与导入: 了解不同数据源（如CSV、JSON、API、数据库）的读取和导入方法。
-  --探索性数据分析 (EDA): 通过统计摘要、图表等方式理解数据分布、识别异常值、发现潜在模式和关系。
-  --数据预处理: 处理缺失值、异常值、重复数据，进行数据类型转换和格式统一。
-  --指标体系构建: 熟悉常见的业务指标（KPIs）及其计算方法。
+  ----数据采集与导入: 了解不同数据源（如CSV、JSON、API、数据库）的读取和导入方法。
+  ----探索性数据分析 (EDA): 通过统计摘要、图表等方式理解数据分布、识别异常值、发现潜在模式和关系。
+  ----数据预处理: 处理缺失值、异常值、重复数据，进行数据类型转换和格式统一。
+  ----指标体系构建: 熟悉常见的业务指标（KPIs）及其计算方法。
 - 商业分析
-  --分析框架: 熟悉常用的分析框架，如 5W2H、用户行为分析漏斗、AARRR模型等。
-  --案例分析：通过实际业务案例，学习从问题定义到结论建议的完整分析流程，熟悉不同行业的数据驱动决策实践。
+  ----分析框架: 熟悉常用的分析框架，如 5W2H、用户行为分析漏斗、AARRR模型等。
+  ----案例分析：通过实际业务案例，学习从问题定义到结论建议的完整分析流程，熟悉不同行业的数据驱动决策实践。
 - 统计学
-  --描述性统计: 掌握均值、中位数、众数、方差、标准差、分位数等概念。
-  --概率论: 了解概率、条件概率、贝叶斯定理等基础知识。
-  --推断性统计: 掌握假设检验（如 $t$ 检验、方差分析）、置信区间、相关性分析、回归分析等。
-  --A/B 测试: 了解实验设计原理、样本量计算和结果解读。
+  ----描述性统计: 掌握均值、中位数、众数、方差、标准差、分位数等概念。
+  ----概率论: 了解概率、条件概率、贝叶斯定理等基础知识。
+  ----推断性统计: 掌握假设检验（如 $t$ 检验、方差分析）、置信区间、相关性分析、回归分析等。
+  ----A/B 测试: 了解实验设计原理、样本量计算和结果解读。
 - 可视化与数据呈现
-  --可视化工具: 掌握如 Matplotlib、Seaborn (Python) 或 Tableau、Power BI 等工具。
-  --图表选择: 能够根据数据类型和分析目的选择合适的图表类型（柱状图、折线图、散点图、热力图等）。
-  --数据叙事 (Data Storytelling): 能够有效地组织图表和文字，清晰、有说服力地向非技术受众传达分析发现。
+  ----可视化工具: 掌握如 Matplotlib、Seaborn (Python) 或 Tableau、Power BI 等工具。
+  ----图表选择: 能够根据数据类型和分析目的选择合适的图表类型（柱状图、折线图、散点图、热力图等）。
+  ----数据叙事 (Data Storytelling): 能够有效地组织图表和文字，清晰、有说服力地向非技术受众传达分析发现。
 - 数据清洗与特征工程
-  --特征工程: 了解如何从原始数据中提取、转换和创建新的特征，以提高模型性能（虽然更偏向机器学习，但在数据分析中也至关重要）。包括特征编码（One-Hot, Label Encoding）、特征缩放、日期时间特征处理等。
+  ----特征工程: 了解如何从原始数据中提取、转换和创建新的特征，以提高模型性能（虽然更偏向机器学习，但在数据分析中也至关重要）。包括特征编码（One-Hot, Label Encoding）、特征缩放、日期时间特征处理等。
   
 ## 数据分析中级 Intermediate Data Analysis
 - 经典机器学习
-  --模型理论: 理解线性回归 (Linear Regression)、逻辑回归 (Logistic Regression)、决策树 (Decision Tree)、支持向量机 (SVM) 等经典模型的数学原理和假设。
-  --模型评估与选择: 掌握准确率 (Accuracy)、精确率 (Precision)、召回率 (Recall)、F1-Score、AUC/ROC 等评估指标，了解交叉验证 (Cross-Validation) 和超参数调优 (Hyperparameter Tuning) 的方法。
-  --集成学习 (Ensemble Learning): 了解 Bagging（如 Random Forest）和 Boosting（如 GBDT、XGBoost、LightGBM）的原理和应用场景。
-  --无监督学习: 掌握聚类算法（如 K-Means、DBSCAN）和降维方法（如 PCA、t-SNE）。
+  ----模型理论: 理解线性回归 (Linear Regression)、逻辑回归 (Logistic Regression)、决策树 (Decision Tree)、支持向量机 (SVM) 等经典模型的数学原理和假设。
+  ----模型评估与选择: 掌握准确率 (Accuracy)、精确率 (Precision)、召回率 (Recall)、F1-Score、AUC/ROC 等评估指标，了解交叉验证 (Cross-Validation) 和超参数调优 (Hyperparameter Tuning) 的方法。
+  ----集成学习 (Ensemble Learning): 了解 Bagging（如 Random Forest）和 Boosting（如 GBDT、XGBoost、LightGBM）的原理和应用场景。
+  ----无监督学习: 掌握聚类算法（如 K-Means、DBSCAN）和降维方法（如 PCA、t-SNE）。
 - 神经网络与深度学习
-  --基础概念: 理解神经元、激活函数（如 ReLU、Sigmoid）、损失函数、梯度下降 (Gradient Descent) 等核心组件。
-  --网络架构: 熟悉前馈神经网络 (FNN)、卷积神经网络 (CNN) 和循环神经网络 (RNN/LSTM/GRU) 的基本结构和应用。
-  --深度学习框架: 能够使用 TensorFlow 或 PyTorch 搭建、训练和评估深度学习模型。
+  ----基础概念: 理解神经元、激活函数（如 ReLU、Sigmoid）、损失函数、梯度下降 (Gradient Descent) 等核心组件。
+  ----网络架构: 熟悉前馈神经网络 (FNN)、卷积神经网络 (CNN) 和循环神经网络 (RNN/LSTM/GRU) 的基本结构和应用。
+  ----深度学习框架: 能够使用 TensorFlow 或 PyTorch 搭建、训练和评估深度学习模型。
 - 数据工程与存储
-  --大数据基础: 了解大数据生态系统（如 Hadoop、Spark）的基本概念和作用。
-  --分布式计算: 掌握 Spark 的核心概念（如 RDD、DataFrame）和基本操作，用于处理大规模数据。
-  --数据仓库: 了解数据仓库 (Data Warehouse) 的概念、架构（如 Inmon、Kimball）和 ETL/ELT 流程。
-  --云平台 (Cloud Platforms): 了解 AWS、Azure 或 Google Cloud 等主流云平台在数据存储（如 S3/Blob Storage）、计算和数据服务方面的基本知识。
+  ----大数据基础: 了解大数据生态系统（如 Hadoop、Spark）的基本概念和作用。
+  ----分布式计算: 掌握 Spark 的核心概念（如 RDD、DataFrame）和基本操作，用于处理大规模数据。
+  ----数据仓库: 了解数据仓库 (Data Warehouse) 的概念、架构（如 Inmon、Kimball）和 ETL/ELT 流程。
+  ----云平台 (Cloud Platforms): 了解 AWS、Azure 或 Google Cloud 等主流云平台在数据存储（如 S3/Blob Storage）、计算和数据服务方面的基本知识。
 - 模型部署与 MLOps
-  --模型持久化: 掌握使用 pickle 或 ONNX 等方式保存和加载训练好的模型。
-  --API 部署: 能够使用 Flask 或 Streamlit 等框架将模型封装为 RESTful API 服务，实现模型推理。
-  --容器化 (Containerization): 熟悉 Docker 的基本用法，将模型及其运行环境打包成容器。
-  --MLOps 概念: 了解模型监控、版本控制、自动化训练流水线 (Pipeline) 等 MLOps 流程和工具（如 MLflow、Kubeflow）的基础知识。
+  ----模型持久化: 掌握使用 pickle 或 ONNX 等方式保存和加载训练好的模型。
+  ----API 部署: 能够使用 Flask 或 Streamlit 等框架将模型封装为 RESTful API 服务，实现模型推理。
+  ----容器化 (Containerization): 熟悉 Docker 的基本用法，将模型及其运行环境打包成容器。
+  ----MLOps 概念: 了解模型监控、版本控制、自动化训练流水线 (Pipeline) 等 MLOps 流程和工具（如 MLflow、Kubeflow）的基础知识。
 ## 数据分析高级
 - 专项方向（NLP / CV / 时序 / 推荐 等）
 - 大数据与分布式计算
