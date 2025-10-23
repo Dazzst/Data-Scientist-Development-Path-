@@ -2,6 +2,10 @@
 
 **SQL**（Structured Query Language）是用于管理关系数据库系统（RDBMS）的标准语言。SQL 可以应用到所有关系型数据库中，例如 MySQL、Oracle、SQL Server 等。
 
+<div align="center">
+<img width="599" height="649" alt="v2-6186746a271bbf404eeaefba729b09a8_1440w" src="https://github.com/user-attachments/assets/a969fd72-4094-4190-a964-bb1731d3a970"/>
+</div>
+
 ## 一、SQL 语言分类
 
 SQL 语句根据其功能分为以下四大类（D-系列）：
@@ -12,8 +16,6 @@ SQL 语句根据其功能分为以下四大类（D-系列）：
 | **DML** | Data Manipulation Language | 数据操作语言 | `INSERT`, `UPDATE`, `DELETE` | 处理数据库表中的记录（数据）。 |
 | **DCL** | Data Control Language | 数据控制语言 | `GRANT`, `REVOKE` | 定义访问权限和安全级别。 |
 | **DQL** | Data Query Language | 数据查询语言 | `SELECT` | 查询记录（数据）。 |
-
-<img width="599" height="649" alt="v2-6186746a271bbf404eeaefba729b09a8_1440w" src="https://github.com/user-attachments/assets/a969fd72-4094-4190-a964-bb1731d3a970" />
 
 
 ## 二、DDL（数据定义语言）：定义数据库结构
