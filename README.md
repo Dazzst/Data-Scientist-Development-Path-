@@ -12,7 +12,7 @@
 ## 数据分析基础 Basic Data Analysis
 - 编程与开发工具 Programming and Development Tools
   - [Python](Python.md)
-  - SQL
+  - [SQL](SQL.md)
   - R 
   - Excel
 - 数据分析
