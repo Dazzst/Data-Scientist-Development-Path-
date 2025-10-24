@@ -11,8 +11,8 @@
 
 ## 数据分析基础 Basic Data Analysis
 - 编程与开发工具 Programming and Development Tools
-  - [Python](Python.md)
-  - [SQL](SQL.md)
+  - [Python](Python/Python_Intro.md)
+  - [SQL](SQL/SQL_Intro.md)
   - [R](R/R_Intro.md) 
   - [Excel](Excel/Excel_Intro.md)
 - 数据分析
