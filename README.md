@@ -13,7 +13,7 @@
 - 编程与开发工具 Programming and Development Tools
   - [Python](Python.md)
   - [SQL](SQL.md)
-  - R 
+  - [R](R.md) 
   - Excel
 - 数据分析
   - 数据采集与导入
