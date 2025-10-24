@@ -13,8 +13,8 @@
 - 编程与开发工具 Programming and Development Tools
   - [Python](Python.md)
   - [SQL](SQL.md)
-  - [R](R.md) 
-  - [Excel](Excel.md)
+  - [R](R/R_Intro.md) 
+  - [Excel](Excel/Excel_Intro.md)
 - 数据分析
   - 数据采集与导入
   - 探索性数据分析 
