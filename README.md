@@ -1,4 +1,4 @@
-# Data-Scientist-Development-Path-
+# Data-Scientist-Development-Path
 重新整理规划所有关于数据科学的知识点以方便复习。
 
 
@@ -14,7 +14,7 @@
   - [Python](Python.md)
   - [SQL](SQL.md)
   - [R](R.md) 
-  - Excel
+  - [Excel](Excel.md)
 - 数据分析
   - 数据采集与导入
   - 探索性数据分析 
