@@ -51,7 +51,7 @@
     - 特征缩放
     - 日期时间特征处理
 ## 数据实战
-- [Kaggle 实操步骤](Kaggle/Kaggle handbook.md)
+- [Kaggle 实操手册](Kaggle/Kaggle handbook.md)
 - https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce 
 ## 学习资料
 - [100天学习Python](https://github.com/jackfrued/Python-100-Days/blob/master/Day66-80/71.NumPy%E7%9A%84%E5%BA%94%E7%94%A8-4.md)
