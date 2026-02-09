@@ -1,9 +1,9 @@
 # Data Scientist Development Path  
 数据科学家成长路径
 
-本仓库用于系统整理成为 **Data Scientist** 所需的知识与技能，同时覆盖 Data Analyst / Business Analyst 相关能力，既是我的个人复习路线，也希望能为正在学习的数据同学提供参考。[page:1]
+本仓库用于系统整理成为 **Data Scientist** 所需的知识与技能，同时覆盖 Data Analyst / Business Analyst 相关能力，既是我的个人复习路线，也希望能为正在学习的数据同学提供参考。
 
-This repository is a structured **Data Scientist Development Path**, covering the full spectrum from data analysis to machine learning, deep learning and data engineering. It is designed for both **personal review** and **public learning reference**.[page:1]
+This repository is a structured **Data Scientist Development Path**, covering the full spectrum from data analysis to machine learning, deep learning and data engineering. It is designed for both **personal review** and **public learning reference**.
 
 ---
 
@@ -24,21 +24,20 @@ Path Overview
 
 这是一条从「数据分析基础 → 机器学习与深度学习 → 数据工程与系统化实践 → 高阶数据科学」的完整路径，中间自然包含了数据分析师所需的工具、分析框架和业务能力。[page:1]
 
-This path goes from **basic data analysis** to **advanced data science**, including programming, statistics, machine learning, deep learning, data engineering, and practical projects. Data analyst skills are treated as an essential foundation for data scientists.[page:1]
+This path goes from **basic data analysis** to **advanced data science**, including programming, statistics, machine learning, deep learning, data engineering, and practical projects. Data analyst skills are treated as an essential foundation for data scientists.
 
 学习方式建议：  
-- README 只提供结构和导航，**所有具体细节与示例放在子文件 / 子目录中**（例如 `Python_Intro.md`、`SQL_Intro.md`、`Kaggle_handbook.md` 等）。[page:1]  
-- 可以按阶段顺序学习，也可以按主题（如 Python、SQL、ML、MLOps）跳转查阅。[page:1]
+- README 只提供结构和导航，**所有具体细节与示例放在子文件 / 子目录中**（例如 `Python_Intro.md`、`SQL_Intro.md`、`Kaggle_handbook.md` 等）。
+- 可以按阶段顺序学习，也可以按主题（如 Python、SQL、ML、MLOps）跳转查阅。
 
 ---
 
 ## 2. 数据分析基础  
 Basic Data Analysis
 
-这一阶段主要面向：**数据分析师 / 数据科学入门者**，目标是打牢数据分析和业务理解的基础。[page:1]  
-This stage builds core skills for data analysis and business understanding.[page:1]
-
-涵盖内容（细节见各子文件）：[page:1]
+这一阶段主要面向：**数据分析师 / 数据科学入门者**，目标是打牢数据分析和业务理解的基础。
+This stage builds core skills for data analysis and business understanding.
+涵盖内容（细节见各子文件）：
 
 - 编程与开发工具 Programming & Tools  
   - [Python Intro](./Python/Python_Intro.md)  
@@ -57,7 +56,7 @@ This stage builds core skills for data analysis and business understanding.[page
   - 包含：5W2H、多维度拆解、对比分析、假设检验分析、相关性分析、群组分析、RFM 分群、AARRR 模型、漏斗分析等。[page:1]
 
 - 统计学 Statistics  
-  - 描述性统计、概率论、推断性统计、A/B 测试基础。[page:1]
+  - 描述性统计、概率论、推断性统计、A/B 测试基础。
 
 - 可视化与数据呈现 Visualization & Data Storytelling  
   - 工具：Matplotlib、Seaborn、Tableau、Power BI  
@@ -65,15 +64,15 @@ This stage builds core skills for data analysis and business understanding.[page
 
 - 数据清洗与特征工程 Data Cleaning & Feature Engineering  
   - 缺失值与异常值处理  
-  - 特征编码（One-Hot、Label Encoding）、特征缩放、日期时间特征处理等。[page:1]
+  - 特征编码（One-Hot、Label Encoding）、特征缩放、日期时间特征处理等
 
 ---
 
 ## 3. 数据分析中级  
 Intermediate Data Analysis
 
-这一阶段开始从「分析」走向「建模」，逐步接近 Data Scientist 的核心技能。[page:1]  
-This stage focuses on classical machine learning, deep learning basics, data engineering, and model deployment.[page:1]
+这一阶段开始从「分析」走向「建模」，逐步接近 Data Scientist 的核心技能。
+This stage focuses on classical machine learning, deep learning basics, data engineering, and model deployment.
 
 - 经典机器学习 Classical Machine Learning  
   - 线性/逻辑回归、决策树、SVM 等模型理论与假设  
@@ -90,7 +89,7 @@ This stage focuses on classical machine learning, deep learning basics, data eng
   - 大数据生态：Hadoop、Spark 基本概念  
   - 分布式计算：RDD、DataFrame 核心思想与常用操作  
   - 数据仓库：架构、ETL/ELT 流程  
-  - 云平台入门：AWS / Azure / GCP 中与数据相关的核心服务。[page:1]
+  - 云平台入门：AWS / Azure / GCP 中与数据相关的核心服务.
 
 - 模型部署与 MLOps Intro  
   - 模型持久化（pickle、ONNX 等）  
@@ -98,17 +97,16 @@ This stage focuses on classical machine learning, deep learning basics, data eng
   - 容器化（Docker）基础  
   - 初步了解 MLOps：模型监控、版本管理、Pipeline 等。[page:1]
 
-（部分内容链接：`Data Analysis/`、`Kaggle/` 等子目录及学习资料小节。）[page:1]
+（部分内容链接：`Data Analysis/`、`Kaggle/` 等子目录及学习资料小节。）
 
 ---
 
 ## 4. 数据分析高级  
 Advanced Data Analysis
 
-这一阶段强调「**方向选择 + 深度**」，从通才走向在某一领域具备专业度的数据科学家。[page:1]
+这一阶段强调「**方向选择 + 深度**」，从通才走向在某一领域具备专业度的数据科学家。
 
-可能的专项方向包括（各方向细分内容在后续小文件中具体展开）：[page:1]
-
+可能的专项方向包括（各方向细分内容在后续小文件中具体展开）：
 - 自然语言处理（NLP）  
 - 计算机视觉（CV）  
 - 时间序列分析（Time Series）  
@@ -118,16 +116,16 @@ Advanced Data Analysis
 同时关注：  
 - 模型可解释性：特征重要性、SHAP/LIME 等方法（直觉层面）  
 - 模型监控与数据漂移  
-- 更复杂的实验设计与指标体系。[page:1]
+- 更复杂的实验设计与指标体系。
 
 ---
 
 ## 5. 数据分析大神  
 Expert Level
 
-面向希望在 Data Science 方向做到「**专家 / 影响者**」的人群。[page:1]
+面向希望在 Data Science 方向做到「**专家 / 影响者**」的人群。
 
-方向要点（具体内容将以更细的 Markdown 文档补充）：[page:1]
+方向要点（具体内容将以更细的 Markdown 文档补充）：
 
 - 前沿研究与算法  
   - 论文阅读与复现  
@@ -141,34 +139,34 @@ Expert Level
 - 影响力与领导力  
   - 开源项目贡献  
   - 论文 / 技术博客 / 技术分享  
-  - 在团队与产品层面的技术决策。[page:1]
+  - 在团队与产品层面的技术决策。
 
 ---
 
 ## 6. 数据实战  
 Projects & Kaggle
 
-这一部分将前面知识落地到真实项目和数据集。[page:1]
+这一部分将前面知识落地到真实项目和数据集。
 
 - Kaggle 实战  
   - [Kaggle 实操手册](./Kaggle/Kaggle_handbook.md)  
-  - 推荐从结构化数据任务入手（如 Tabular），再逐步尝试 NLP / CV 等方向。[page:1]
+  - 推荐从结构化数据任务入手（如 Tabular），再逐步尝试 NLP / CV 等方向。
 
 - 典型数据集  
   - [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)  
-    - 可用于：电商业务分析、用户行为分析、留存与复购、预测任务等。[page:1]
+    - 可用于：电商业务分析、用户行为分析、留存与复购、预测任务等。
 
 - 项目建议  
   - 基础：端到端数据分析报告  
   - 中级：经典 ML 项目（回归 / 分类）  
-  - 高级：专项方向项目（推荐、NLP、CV、时序等）。[page:1]
+  - 高级：专项方向项目（推荐、NLP、CV、时序等）。
 
 ---
 
 ## 7. 学习资料  
 Resources
 
-辅助整个 Data Scientist Path 的参考资料。[page:1]
+辅助整个 Data Scientist Path 的参考资料。
 
 - 编程与工具  
   - [100天学习Python](https://github.com/jackfrued/Python-100-Days/blob/master/Day66-80/71.NumPy%E7%9A%84%E5%BA%94%E7%94%A8-4.md)  
@@ -184,10 +182,10 @@ Resources
   - [Python黑魔法](https://www.zhihu.com/question/431725755/answer/1596178843)  
 
 - 中级 / 高级机器学习与 AI  
-  - [AI Learning](https://github.com/apachecn/ailearning/blob/master/docs/ml/1.md) 等。[page:1]
+  - [AI Learning](https://github.com/apachecn/ailearning/blob/master/docs/ml/1.md) 等。
 
 ---
 
-欢迎 Issue / PR，一起完善这条 Data Scientist 成长路径。[page:1]  
-Issues and pull requests are welcome to improve and extend this path.[page:1]
+欢迎 一起完善这条 Data Scientist 成长路径。
+Issues and pull requests are welcome to improve and extend this path.
 
