@@ -6,10 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: #0f172a;
-      --card-bg: #0b1120;
+      --bg: #020617;
+      --bg-alt: #020617;
+      --card-bg: #020617;
+      --card-border: rgba(148, 163, 184, 0.6);
       --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
+      --accent-soft: rgba(56, 189, 248, 0.16);
       --text-main: #e5e7eb;
       --text-sub: #9ca3af;
     }
@@ -18,481 +20,352 @@
     }
     body {
       margin: 0;
+      min-height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1d283a 0, #020617 55%, #000 100%);
       color: var(--text-main);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.4), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(129, 140, 248, 0.3), transparent 55%),
+        radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.25), transparent 55%),
+        #020617;
+      background-attachment: fixed;
     }
 
-    /* 顶部导航 */
+    /* 顶部 */
     .nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 24px;
-      background: rgba(15, 23, 42, 0.95);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-      backdrop-filter: blur(12px);
+      padding: 16px 28px;
+      border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.94));
+      backdrop-filter: blur(14px);
       position: sticky;
       top: 0;
       z-index: 10;
     }
     .nav-title {
       font-weight: 600;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 13px;
     }
     .nav-sub {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--text-sub);
     }
 
-    /* 布局：左侧卡片列表 + 右侧内容 */
-    .layout {
+    .nav-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-sub);
+    }
+
+    /* 主体 */
+    .hero {
       max-width: 1120px;
-      margin: 24px auto 40px;
-      padding: 0 16px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.5fr);
-      gap: 24px;
+      margin: 40px auto 32px;
+      padding: 0 20px;
     }
-
-    /* 左侧卡片栏 */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-    .level-card {
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.22), rgba(15, 23, 42, 0.96));
-      border-radius: 16px;
-      padding: 14px 14px 16px;
-      border: 1px solid rgba(148, 163, 184, 0.55);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, border-color 0.12s;
-    }
-    .level-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.45), transparent 55%);
-      opacity: 0;
-      transition: opacity 0.2s;
-      pointer-events: none;
-    }
-    .level-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.6);
-      border-color: rgba(248, 250, 252, 0.8);
-    }
-    .level-card.active {
-      border-color: var(--accent);
-      box-shadow: 0 18px 45px rgba(56, 189, 248, 0.45);
-    }
-    .level-card.active::before {
-      opacity: 1;
-    }
-    .level-label {
+    .hero-eyebrow {
       font-size: 12px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-sub);
-    }
-    .level-title-row {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-top: 4px;
-      margin-bottom: 6px;
-    }
-    .level-title {
-      font-size: 16px;
-      font-weight: 600;
-    }
-    .level-badge {
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      color: var(--text-sub);
-    }
-    .level-desc {
-      font-size: 12px;
-      color: var(--text-sub);
-      line-height: 1.4;
-      margin-bottom: 6px;
-    }
-    .level-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-      margin-top: 4px;
-    }
-    .tag {
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.45);
-    }
-
-    /* 右侧内容面板 */
-    .panel {
-      background: rgba(15, 23, 42, 0.96);
-      border-radius: 18px;
-      padding: 20px 22px 22px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.85);
-      position: relative;
-      overflow: hidden;
-    }
-    .panel::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.18), transparent 55%);
-      opacity: 0.7;
-      pointer-events: none;
-    }
-    .panel-inner {
-      position: relative;
-      z-index: 1;
-    }
-    .panel-label {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-sub);
-      margin-bottom: 4px;
-    }
-    .panel-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin: 0 0 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .panel-chip {
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      border: 1px solid rgba(56, 189, 248, 0.5);
-    }
-    .panel-summary {
-      font-size: 13px;
       color: var(--text-sub);
       margin-bottom: 10px;
     }
-    .panel-section-title {
-      font-size: 13px;
-      margin-top: 14px;
-      margin-bottom: 4px;
+    .hero-title {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 650;
+      margin: 0 0 10px;
+      line-height: 1.1;
     }
-    ul {
-      margin: 0 0 4px;
-      padding-left: 18px;
-      font-size: 13px;
+    .hero-gradient {
+      background: linear-gradient(to right, #e5e7eb, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
     }
-    li {
-      margin-bottom: 3px;
-    }
-    .panel-note {
-      margin-top: 8px;
-      font-size: 12px;
+    .hero-subtitle {
+      font-size: 14px;
       color: var(--text-sub);
+      max-width: 560px;
     }
 
-    @media (max-width: 860px) {
-      .layout {
+    /* 卡片网格 */
+    .grid-wrap {
+      max-width: 1120px;
+      margin: 0 auto 40px;
+      padding: 0 20px 24px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    @media (max-width: 960px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 640px) {
+      .grid {
         grid-template-columns: minmax(0, 1fr);
       }
     }
-    @media (max-width: 600px) {
-      .card-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card {
+      position: relative;
+      padding: 16px 16px 18px;
+      border-radius: 18px;
+      border: 1px solid var(--card-border);
+      background:
+        radial-gradient(circle at top, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.98));
+      box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.6);
+      overflow: hidden;
+      cursor: pointer;
+      transition:
+        transform 0.14s ease-out,
+        box-shadow 0.14s ease-out,
+        border-color 0.14s ease-out,
+        background 0.14s ease-out;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.4), transparent 60%),
+        radial-gradient(circle at 100% 0, rgba(168, 85, 247, 0.3), transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-out;
+    }
+    .card:hover {
+      transform: translateY(-4px) translateZ(0);
+      box-shadow:
+        0 26px 65px rgba(15, 23, 42, 0.95),
+        0 0 0 1px rgba(56, 189, 248, 0.6);
+      border-color: rgba(56, 189, 248, 0.9);
+      background:
+        radial-gradient(circle at top, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.98));
+    }
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-level {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      margin-bottom: 4px;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .card-sub {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+      min-height: 32px;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+    .card-tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--text-sub);
+    }
+    .card-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+    .card-arrow {
+      font-size: 14px;
+      color: var(--accent);
+    }
+
+    /* 页脚 */
+    .footer {
+      max-width: 1120px;
+      margin: 0 auto 18px;
+      padding: 0 20px;
+      font-size: 11px;
+      color: var(--text-sub);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
     }
   </style>
 </head>
 <body>
-  <!-- 顶部 -->
   <header class="nav">
     <div>
-      <div class="nav-title">Data Scientist Development Path</div>
-      <div class="nav-sub">数据分析从基础到大神 · Projects & Resources</div>
+      <div class="nav-title">DATA SCIENTIST DEVELOPMENT PATH</div>
+      <div class="nav-sub">Data Analysis · Projects · Resources</div>
     </div>
+    <div class="nav-pill">dazzst · GitHub Pages</div>
   </header>
 
-  <main class="layout">
-    <!-- 左侧：阶段卡片（6 个） -->
-    <section>
-      <div class="card-grid">
-        <div class="level-card active" data-target="panel-basic">
-          <div class="level-label">Level 1</div>
-          <div class="level-title-row">
-            <div class="level-title">数据分析基础 · Basic Data Analysis</div>
-            <div class="level-badge">0 → 1</div>
+  <section class="hero">
+    <div class="hero-eyebrow">ROADMAP · DATA ANALYST / SCIENTIST</div>
+    <h1 class="hero-title">
+      你的 <span class="hero-gradient">数据分析学习路径</span><br />
+      从基础到大神，一站呈现
+    </h1>
+    <p class="hero-subtitle">
+      这是一个专门为「自学数据分析 / 数据科学」设计的路线地图，从基础技能到项目实战，再到长期可维护的学习资料库。
+      点击任意模块卡片即可进入对应页面。
+    </p>
+  </section>
+
+  <main class="grid-wrap">
+    <div class="grid">
+      <!-- 基础 -->
+      <a class="card-link" href="basic.html">
+        <article class="card">
+          <div class="card-level">LEVEL 1 · BASIC</div>
+          <div class="card-title">数据分析基础 · Basic Data Analysis</div>
+          <div class="card-sub">
+            Python、Pandas 和可视化的地基，在这一层你先把工具真正用起来。
           </div>
-          <div class="level-desc">打好 Python + 数据分析的基本功，能完成简单的数据探索和可视化。</div>
-          <div class="level-tags">
-            <span class="tag">Python 基础</span>
-            <span class="tag">Pandas 入门</span>
+          <div class="card-tags">
+            <span class="card-tag">Python</span>
+            <span class="card-tag">Pandas</span>
+            <span class="card-tag">Matplotlib</span>
           </div>
-        </div>
-
-        <div class="level-card" data-target="panel-intermediate">
-          <div class="level-label">Level 2</div>
-          <div class="level-title-row">
-            <div class="level-title">数据分析中级 · Intermediate Data Analysis</div>
-            <div class="level-badge">1 → 2</div>
+          <div class="card-foot">
+            <span>入门 · 0 → 1</span>
+            <span class="card-arrow">→</span>
           </div>
-          <div class="level-desc">从「会写代码」升级到「会做分析」，可以独立完成一个小型分析项目。</div>
-          <div class="level-tags">
-            <span class="tag">数据清洗</span>
-            <span class="tag">探索式分析</span>
+        </article>
+      </a>
+
+      <!-- 中级 -->
+      <a class="card-link" href="intermediate.html">
+        <article class="card">
+          <div class="card-level">LEVEL 2 · INTERMEDIATE</div>
+          <div class="card-title">数据分析中级 · Intermediate</div>
+          <div class="card-sub">
+            围绕真实问题做探索式分析，学会讲清楚「发生了什么」以及「为什么」。
           </div>
-        </div>
-
-        <div class="level-card" data-target="panel-advanced">
-          <div class="level-label">Level 3</div>
-          <div class="level-title-row">
-            <div class="level-title">数据分析高级 · Advanced Data Analysis</div>
-            <div class="level-badge">2 → 3</div>
+          <div class="card-tags">
+            <span class="card-tag">EDA</span>
+            <span class="card-tag">业务指标</span>
           </div>
-          <div class="level-desc">引入更系统的统计方法和建模思路，解决更复杂的业务分析问题。</div>
-          <div class="level-tags">
-            <span class="tag">统计建模</span>
-            <span class="tag">实验设计</span>
+          <div class="card-foot">
+            <span>项目化 · 1 → 2</span>
+            <span class="card-arrow">→</span>
           </div>
-        </div>
+        </article>
+      </a>
 
-        <div class="level-card" data-target="panel-expert">
-          <div class="level-label">Level 4</div>
-          <div class="level-title-row">
-            <div class="level-title">数据分析大神 · Expert Level</div>
-            <div class="level-badge">3 → 4</div>
+      <!-- 高级 -->
+      <a class="card-link" href="advanced.html">
+        <article class="card">
+          <div class="card-level">LEVEL 3 · ADVANCED</div>
+          <div class="card-title">数据分析高级 · Advanced</div>
+          <div class="card-sub">
+            把统计学和建模系统地融入分析流程，开始做更严谨、可复现的分析。
           </div>
-          <div class="level-desc">能够设计整体分析方案，指导他人，并在团队中输出方法论。</div>
-          <div class="level-tags">
-            <span class="tag">业务洞察</span>
-            <span class="tag">方法论沉淀</span>
+          <div class="card-tags">
+            <span class="card-tag">统计推断</span>
+            <span class="card-tag">回归模型</span>
           </div>
-        </div>
-
-        <div class="level-card" data-target="panel-projects">
-          <div class="level-label">Practice</div>
-          <div class="level-title-row">
-            <div class="level-title">数据实战 · Projects & Kaggle</div>
-            <div class="level-badge">Portfolio</div>
+          <div class="card-foot">
+            <span>方法论 · 2 → 3</span>
+            <span class="card-arrow">→</span>
           </div>
-          <div class="level-desc">用一组真实项目，把前面所有阶段的能力串起来，形成作品集。</div>
-          <div class="level-tags">
-            <span class="tag">端到端项目</span>
-            <span class="tag">Kaggle</span>
+        </article>
+      </a>
+
+      <!-- 大神 -->
+      <a class="card-link" href="expert.html">
+        <article class="card">
+          <div class="card-level">LEVEL 4 · EXPERT</div>
+          <div class="card-title">数据分析大神 · Expert Level</div>
+          <div class="card-sub">
+            从「自己会做」到「让别人也会做」，输出框架、规范和长期可用的最佳实践。
           </div>
-        </div>
-
-        <div class="level-card" data-target="panel-resources">
-          <div class="level-label">Ref</div>
-          <div class="level-title-row">
-            <div class="level-title">学习资料 · Resources</div>
-            <div class="level-badge">Books / Courses</div>
+          <div class="card-tags">
+            <span class="card-tag">分析框架</span>
+            <span class="card-tag">团队赋能</span>
           </div>
-          <div class="level-desc">整理每个阶段的重点书籍、课程和在线资源，做一个可维护的资料库。</div>
-          <div class="level-tags">
-            <span class="tag">书单</span>
-            <span class="tag">课程清单</span>
+          <div class="card-foot">
+            <span>带人 · 3 → 4</span>
+            <span class="card-arrow">→</span>
           </div>
-        </div>
-      </div>
-    </section>
+        </article>
+      </a>
 
-    <!-- 右侧：内容面板（点击左边卡片切换） -->
-    <section class="panel">
-      <div class="panel-inner">
-        <!-- Level 1：基础 -->
-        <div class="panel-page" id="panel-basic">
-          <div class="panel-label">Level 1 · Basic</div>
-          <h1 class="panel-title">
-            数据分析基础（Basic Data Analysis）
-            <span class="panel-chip">目标：能看懂 & 模仿完成基础分析</span>
-          </h1>
-          <p class="panel-summary">
-            这一阶段主要是打基础：熟悉 Python 环境、掌握常用数据结构和语法，能用 Pandas 读写数据并做最基本的统计与可视化。
-          </p>
+      <!-- 实战 -->
+      <a class="card-link" href="projects.html">
+        <article class="card">
+          <div class="card-level">PRACTICE</div>
+          <div class="card-title">数据实战 · Projects & Kaggle</div>
+          <div class="card-sub">
+            用 3～5 个有代表性的项目把路线走完，沉淀成你的作品集。
+          </div>
+          <div class="card-tags">
+            <span class="card-tag">端到端项目</span>
+            <span class="card-tag">Kaggle</span>
+          </div>
+          <div class="card-foot">
+            <span>作品集</span>
+            <span class="card-arrow">→</span>
+          </div>
+        </article>
+      </a>
 
-          <h2 class="panel-section-title">建议学习内容</h2>
-          <ul>
-            <li>开发环境：Anaconda / Python、VS Code / Jupyter、Git 基本操作。</li>
-            <li>Python 基础语法：变量、条件与循环、函数、列表 / 字典等数据结构。</li>
-            <li>Pandas 入门：读取 CSV / Excel、查看数据、基本清洗（缺失值、去重等）。</li>
-            <li>基础可视化：Matplotlib / Seaborn 绘制折线图、柱状图、散点图。</li>
-          </ul>
-
-          <h2 class="panel-section-title">阶段产出示例</h2>
-          <ul>
-            <li>1～2 个 Notebook，对公开数据集做描述性分析（均值、中位数、分布等）。</li>
-            <li>一份个人速查表：记录常用 Pandas 操作和可视化代码模板。</li>
-          </ul>
-        </div>
-
-        <!-- Level 2：中级 -->
-        <div class="panel-page" id="panel-intermediate" style="display:none;">
-          <div class="panel-label">Level 2 · Intermediate</div>
-          <h1 class="panel-title">
-            数据分析中级（Intermediate Data Analysis）
-            <span class="panel-chip">目标：能独立完成小型分析项目</span>
-          </h1>
-          <p class="panel-summary">
-            这一阶段重点从「写代码」走向「做分析」，学会围绕一个问题组织数据、指标和图表，并把结论讲清楚。
-          </p>
-
-          <h2 class="panel-section-title">建议学习内容</h2>
-          <ul>
-            <li>数据清洗进阶：缺失值处理、异常值检测、类别编码、时间序列处理。</li>
-            <li>探索式数据分析（EDA）：分组统计、透视表、相关性分析。</li>
-            <li>业务指标意识：转化率、留存、漏斗、分层等基本分析框架。</li>
-            <li>报告输出：用图表 + 文字写一份完整的分析报告或文章。</li>
-          </ul>
-
-          <h2 class="panel-section-title">阶段产出示例</h2>
-          <ul>
-            <li>2 个以上端到端 EDA 项目（包含：问题、分析过程、结论）。</li>
-            <li>至少一篇对外可分享的分析总结（博客 / README / Notion 页面）。</li>
-          </ul>
-        </div>
-
-        <!-- Level 3：高级 -->
-        <div class="panel-page" id="panel-advanced" style="display:none;">
-          <div class="panel-label">Level 3 · Advanced</div>
-          <h1 class="panel-title">
-            数据分析高级（Advanced Data Analysis）
-            <span class="panel-chip">目标：系统使用统计 & 建模方法</span>
-          </h1>
-          <p class="panel-summary">
-            在这一阶段，你会把统计学和简单建模系统地引入分析流程，开始关注因果、实验设计和更严谨的结论。
-          </p>
-
-          <h2 class="panel-section-title">建议学习内容</h2>
-          <ul>
-            <li>统计基础：估计与置信区间、假设检验、p 值、方差分析等。</li>
-            <li>回归与分类模型：线性回归、逻辑回归、简单树模型。</li>
-            <li>实验设计：AB 实验、分层、样本量、实验指标设计。</li>
-            <li>多维分析：分群分析、聚类、主成分分析等方法。</li>
-          </ul>
-
-          <h2 class="panel-section-title">阶段产出示例</h2>
-          <ul>
-            <li>1～2 个结合统计模型的分析案例（例如：回归 + 业务解释）。</li>
-            <li>一份「分析模板」：从问题定义到结论呈现的一整套步骤规范。</li>
-          </ul>
-        </div>
-
-        <!-- Level 4：大神 -->
-        <div class="panel-page" id="panel-expert" style="display:none;">
-          <div class="panel-label">Level 4 · Expert</div>
-          <h1 class="panel-title">
-            数据分析大神（Expert Level）
-            <span class="panel-chip">目标：方法论 & 影响力</span>
-          </h1>
-          <p class="panel-summary">
-            这一阶段更多是「横向拉通」：你不只是完成分析，而是能设计整体方案、建立分析框架并教会别人怎么做。
-          </p>
-
-          <h2 class="panel-section-title">建议发展方向</h2>
-          <ul>
-            <li>构建分析框架：针对常见问题形成可复用的分析路径和模板。</li>
-            <li>跨团队沟通：用非技术语言向业务方解释数据和模型。</li>
-            <li>复盘与沉淀：把项目经验总结成文档、内部分享、公开输出。</li>
-            <li>指导新人：帮助别人设计学习路径和项目练习。</li>
-          </ul>
-
-          <h2 class="panel-section-title">阶段产出示例</h2>
-          <ul>
-            <li>一份系统的「数据分析手册」或系列文章 / 视频。</li>
-            <li>在团队或社区中，持续稳定的分享与答疑记录。</li>
-          </ul>
-        </div>
-
-        <!-- 数据实战 -->
-        <div class="panel-page" id="panel-projects" style="display:none;">
-          <div class="panel-label">Practice</div>
-          <h1 class="panel-title">
-            数据实战（Projects & Kaggle）
-            <span class="panel-chip">目标：把能力落到作品集</span>
-          </h1>
-          <p class="panel-summary">
-            项目是把前面所有阶段的知识真正串起来的地方，你可以结合 Kaggle、真实业务和个人兴趣，设计 3～5 个有深度的项目。
-          </p>
-
-          <h2 class="panel-section-title">项目类型建议</h2>
-          <ul>
-            <li>真实业务或模拟业务项目：从问题 → 数据 → 分析 → 结论 → 建议。</li>
-            <li>Kaggle / 公开数据竞赛：选择少量题目深挖，而不是大量浅尝辄止。</li>
-            <li>个人兴趣项目：例如心理学视频 / 文本、教育数据、内容推荐等。</li>
-          </ul>
-
-          <h2 class="panel-section-title">项目结构建议</h2>
-          <ul>
-            <li>README 中写清：问题背景、数据来源、分析步骤、可复现代码。</li>
-            <li>每个项目至少包含：数据清洗、EDA、模型或统计方法、结论与反思。</li>
-          </ul>
-
-          <p class="panel-note">
-            建议在仓库里为每个项目建立单独文件夹，并在这个页面上列出链接，方便浏览和展示。
-          </p>
-        </div>
-
-        <!-- 学习资料 -->
-        <div class="panel-page" id="panel-resources" style="display:none;">
-          <div class="panel-label">Resources</div>
-          <h1 class="panel-title">
-            学习资料（Resources）
-            <span class="panel-chip">目标：少而精、可维护</span>
-          </h1>
-          <p class="panel-summary">
-            这里可以集中整理你在不同阶段用过、觉得值得推荐的书籍、课程、视频和博客，并标注适用阶段和你的备注。
-          </p>
-
-          <h2 class="panel-section-title">资料整理建议</h2>
-          <ul>
-            <li>按阶段分组：基础 / 中级 / 高级 / 实战 / 思维。</li>
-            <li>每条资源写上：类型（书 / 课）、难度、适合阶段、你的一句话评价。</li>
-            <li>可以在仓库中单独建一个 <code>resources.md</code> 详细列出链接，并从这里跳转。</li>
-          </ul>
-
-          <h2 class="panel-section-title">示例分类</h2>
-          <ul>
-            <li>书籍：Python、统计学、机器学习、商业分析等。</li>
-            <li>在线课程：系统课程 + 碎片化视频（YouTube / B 站）组合。</li>
-            <li>工具与模板：你常用的 Notebook 模板、代码片段合集等。</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+      <!-- 资料 -->
+      <a class="card-link" href="resources.html">
+        <article class="card">
+          <div class="card-level">RESOURCES</div>
+          <div class="card-title">学习资料 · Resources</div>
+          <div class="card-sub">
+            把每个阶段你用过的书、课、视频整理成一个持续更新的资料库。
+          </div>
+          <div class="card-tags">
+            <span class="card-tag">书单</span>
+            <span class="card-tag">课程</span>
+            <span class="card-tag">链接库</span>
+          </div>
+          <div class="card-foot">
+            <span>长期维护</span>
+            <span class="card-arrow">→</span>
+          </div>
+        </article>
+      </a>
+    </div>
   </main>
 
-  <script>
-    // 点击左侧卡片，切换右侧内容
-    const cards = document.querySelectorAll(".level-card");
-    const pages = document.querySelectorAll(".panel-page");
-
-    cards.forEach((card) => {
-      card.addEventListener("click", () => {
-        cards.forEach((c) => c.classList.remove("active"));
-        card.classList.add("active");
-
-        const targetId = card.getAttribute("data-target");
-        pages.forEach((p) => {
-          p.style.display = p.id === targetId ? "block" : "none";
-        });
-      });
-    });
-  </script>
+  <footer class="footer">
+    <span>© Data Scientist Development Path · dazzst</span>
+    <span>Built with pure HTML & CSS · Hosted on GitHub Pages</span>
+  </footer>
 </body>
 </html>
-
