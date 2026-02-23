@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>数据分析基础 · Basic Data Analysis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #020617;
+      color: #e5e7eb;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+      border-bottom: 1px solid rgba(30, 64, 175, 0.7);
+      background: rgba(15, 23, 42, 0.96);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-title {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .nav-back {
+      font-size: 12px;
+      color: #9ca3af;
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
+    }
+    .nav-back:hover {
+      border-color: #38bdf8;
+      color: #e5e7eb;
+    }
+
+    .wrap {
+      max-width: 920px;
+      margin: 26px auto 40px;
+      padding: 0 20px;
+    }
+    h1 {
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+    .badge {
+      font-size: 11px;
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.7);
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      margin-bottom: 10px;
+    }
+    .summary {
+      font-size: 14px;
+      color: #9ca3af;
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-size: 16px;
+      margin-top: 20px;
+      margin-bottom: 6px;
+    }
+    ul {
+      margin: 0 0 4px;
+      padding-left: 20px;
+      font-size: 14px;
+    }
+    li {
+      margin-bottom: 4px;
+    }
+    .note {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 14px;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      background: rgba(15, 23, 42, 0.95);
+      padding: 2px 4px;
+      border-radius: 4px;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-left">
+      <a class="nav-back" href="index.html">← 返回主页</a>
+      <div>
+        <div class="nav-title">LEVEL 1 · BASIC DATA ANALYSIS</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <span class="badge">目标：搭建工具链 + 完成基础分析</span>
+    <h1>数据分析基础（Basic Data Analysis）</h1>
+    <p class="summary">
+      这一阶段的核心，是熟悉 Python、Pandas 和基础可视化工具，能够在 Notebook 里完成一个完整的「从数据加载到简单结论」的流程。
+    </p>
+
+    <h2>一、环境与工具</h2>
+    <ul>
+      <li>安装并熟悉 Anaconda / Python、VS Code 或 Jupyter Notebook。</li>
+      <li>学会创建虚拟环境、安装常用包（如 <code>pandas</code>、<code>numpy</code>、<code>matplotlib</code>）。</li>
+      <li>掌握 Git 的最基础用法：初始化仓库、提交、推送到 GitHub。</li>
+    </ul>
+
+    <h2>二、Python 语言基础</h2>
+    <ul>
+      <li>变量、数值、字符串、列表、字典等基础数据类型。</li>
+      <li>条件判断与循环（if / for / while）。</li>
+      <li>函数的定义与调用，模块与包的基本概念。</li>
+    </ul>
+
+    <h2>三、Pandas 数据分析入门</h2>
+    <ul>
+      <li>读取数据：CSV / Excel / SQL 到 DataFrame。</li>
+      <li>查看与选择：<code>head()</code>、<code>info()</code>、<code>describe()</code>、列选择与行筛选。</li>
+      <li>数据清洗：处理缺失值、去重、类型转换、简单派生字段。</li>
+    </ul>
+
+    <h2>四、基础可视化</h2>
+    <ul>
+      <li>使用 Matplotlib / Seaborn 画折线图、柱状图、散点图、直方图。</li>
+      <li>学会设置标题、坐标轴标签、图例等基本元素。</li>
+      <li>尝试用 2～3 个图同时讲清一个问题。</li>
+    </ul>
+
+    <h2>五、阶段小结与产出</h2>
+    <ul>
+      <li>完成 1～2 个公开数据集的小项目（例如：简单的销售数据 / 用户行为数据）。</li>
+      <li>整理出你的第一个「基础分析模板」Notebook，后面阶段可以在此基础上扩展。</li>
+    </ul>
+
+    <p class="note">
+      建议：在 GitHub 仓库中为本阶段建立一个 <code>basic/</code> 文件夹，放基础项目和 Notebook，并在 README 里简要说明练习内容。
+    </p>
+  </main>
+</body>
+</html>
