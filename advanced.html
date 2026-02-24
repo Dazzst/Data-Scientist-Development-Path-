@@ -2,80 +2,249 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>LEVEL 3 · Advanced Data Analysis</title>
+  <title>LEVEL 1 · Basic Data Analysis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
+  <!-- 直接复用 index.html 里的内联样式 -->
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #020617;
+      --card-bg: #020617;
+      --card-border: rgba(148, 163, 184, 0.6);
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.16);
+      --text-main: #e5e7eb;
+      --text-sub: #9ca3af;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.4), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(129, 140, 248, 0.3), transparent 55%),
+        radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.25), transparent 55%),
+        #020617;
+      background-attachment: fixed;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 28px;
+      border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.94));
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-title {
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+    .nav-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+    .nav-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-sub);
+    }
+    .hero {
+      max-width: 1120px;
+      margin: 40px auto 24px;
+      padding: 0 20px;
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      margin-bottom: 10px;
+    }
+    .hero-title {
+      font-size: clamp(26px, 4.5vw, 34px);
+      font-weight: 650;
+      margin: 0 0 10px;
+      line-height: 1.15;
+    }
+    .hero-gradient {
+      background: linear-gradient(to right, #e5e7eb, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-sub);
+      max-width: 640px;
+    }
+    .back-link {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--text-sub);
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+    .back-link:hover {
+      color: var(--accent);
+    }
+    .grid-wrap {
+      max-width: 1120px;
+      margin: 0 auto 40px;
+      padding: 0 20px 24px;
+    }
+    /* 子页面这里不用真正 grid，就让卡片垂直排列 */
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .card {
+      position: relative;
+      padding: 16px 16px 18px;
+      border-radius: 18px;
+      border: 1px solid var(--card-border);
+      background:
+        radial-gradient(circle at top, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.98));
+      box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.6);
+      overflow: hidden;
+      transition:
+        transform 0.14s ease-out,
+        box-shadow 0.14s ease-out,
+        border-color 0.14s ease-out,
+        background 0.14s ease-out;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.4), transparent 60%),
+        radial-gradient(circle at 100% 0, rgba(168, 85, 247, 0.3), transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-out;
+    }
+    .card:hover {
+      transform: translateY(-3px) translateZ(0);
+      box-shadow:
+        0 24px 60px rgba(15, 23, 42, 0.95),
+        0 0 0 1px rgba(56, 189, 248, 0.6);
+      border-color: rgba(56, 189, 248, 0.9);
+      background:
+        radial-gradient(circle at top, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.98));
+    }
+    .card:hover::before {
+      opacity: 1;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .card-description {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+    .card-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+    .card-list li {
+      margin-bottom: 4px;
+    }
+  </style>
 </head>
 <body>
-  <main class="page">
-    <section class="level">
-      <header class="level-header">
-        <a href="index.html" class="back-link">← 返回首页</a>
-        <p class="level-label">LEVEL 3 · ADVANCED</p>
-        <h1 class="level-title">Advanced Data Analysis</h1>
-        <p class="level-description">
-          这一层面向更复杂的场景：NLP、CV、时间序列、推荐系统，以及可解释性与产品思维。
+  <!-- 顶部导航，和 index 一样 -->
+  <header class="nav">
+    <div>
+      <div class="nav-title">DATA SCIENTIST DEVELOPMENT PATH</div>
+      <div class="nav-sub">Data Analysis · Projects · Resources</div>
+    </div>
+    <div class="nav-pill">dazzst · GitHub Pages</div>
+  </header>
+
+  <!-- 顶部说明 -->
+  <section class="hero">
+    <a href="index.html" class="back-link">← Back to Home</a>
+    <div class="hero-eyebrow">LEVEL 3 · ADVANCED DATA ANALYSIS</div>
+    <h1 class="hero-title">
+      <span class="hero-gradient">Advanced Data Analysis</span><br />
+      面向复杂场景的专项能力
+    </h1>
+    <p class="hero-subtitle">
+      这一层强调方向选择与深度，围绕 NLP、CV、时间序列、推荐系统等关键领域，提升你在具体赛道中的专业度。
+    </p>
+  </section>
+  <main class="grid-wrap">
+    <div class="column">
+      <article class="card">
+        <h2 class="card-title">自然语言处理（NLP）</h2>
+        <p class="card-description">
+          从传统方法到预训练模型，掌握处理文本数据的完整路径。
         </p>
-      </header>
+        <ul class="card-list">
+          <li>文本预处理：分词、清洗、停用词、n-gram、词向量。</li>
+          <li>传统方法：TF-IDF + 经典分类模型（LR、SVM 等）。</li>
+          <li>深度学习方法：RNN / CNN 处理序列与文本分类。</li>
+          <li>预训练模型：BERT 等大模型的微调与下游任务实践。</li>
+        </ul>
+      </article>
 
-      <div class="cards">
-        <!-- 卡片 1：自然语言处理（NLP） -->
-        <article class="card">
-          <h2 class="card-title">自然语言处理（NLP）</h2>
-          <p class="card-description">
-            处理文本数据，从基础预处理到现代预训练模型的应用。
-          </p>
-          <ul class="card-list">
-            <li>文本预处理：分词、清洗、停用词、词向量等基础操作。</li>
-            <li>传统方法：TF-IDF、n-gram、传统分类模型。</li>
-            <li>深度学习方法：RNN/CNN 在文本分类与序列建模中的应用。</li>
-            <li>预训练模型：BERT 等大模型的微调与下游任务实践。</li>
-          </ul>
-        </article>
+      <article class="card">
+        <h2 class="card-title">计算机视觉（CV）</h2>
+        <p class="card-description">
+          面向图像与视频场景，从分类到检测与分割。
+        </p>
+        <ul class="card-list">
+          <li>图像预处理：归一化、数据增强、数据集划分。</li>
+          <li>经典网络：LeNet、AlexNet、VGG、ResNet 的演化思路。</li>
+          <li>核心任务：图像分类、目标检测、语义分割的基本流程。</li>
+          <li>迁移学习：利用预训练模型在小数据集上快速收敛。</li>
+        </ul>
+      </article>
 
-        <!-- 卡片 2：计算机视觉（CV） -->
-        <article class="card">
-          <h2 class="card-title">计算机视觉（CV）</h2>
-          <p class="card-description">
-            从图像分类到目标检测，掌握视觉任务的核心网络与实践套路。
-          </p>
-          <ul class="card-list">
-            <li>图像预处理：归一化、数据增强和数据集构建。</li>
-            <li>经典网络：LeNet、AlexNet、VGG、ResNet 等结构的演化思路。</li>
-            <li>典型任务：图像分类、目标检测、语义分割的基本流程。</li>
-            <li>迁移学习：在小数据集上复用预训练视觉模型。</li>
-          </ul>
-        </article>
+      <article class="card">
+        <h2 class="card-title">时间序列与推荐系统</h2>
+        <p class="card-description">
+          解决业务中的「预测」和「推荐」两大典型问题。
+        </p>
+        <ul class="card-list">
+          <li>时间序列：趋势、季节性、周期性与噪声分解。</li>
+          <li>经典模型：ARIMA、指数平滑、简单 Prophet 思路。</li>
+          <li>推荐系统：协同过滤、基于内容的推荐、混合推荐。</li>
+          <li>业务实践：用业务指标设计推荐与预测的优化目标。</li>
+        </ul>
+      </article>
 
-        <!-- 卡片 3：时间序列与推荐系统 -->
-        <article class="card">
-          <h2 class="card-title">时间序列与推荐系统</h2>
-          <p class="card-description">
-            面向业务的核心场景：预测与推荐，连接数据与决策。
-          </p>
-          <ul class="card-list">
-            <li>时间序列基础：趋势、季节性、周期性与噪声分解。</li>
-            <li>经典方法：ARIMA、指数平滑等模型的直觉与使用场景。</li>
-            <li>推荐系统基础：基于协同过滤与内容的推荐方法。</li>
-            <li>工业实践：结合业务指标设计推荐目标与评估方式。</li>
-          </ul>
-        </article>
-
-        <!-- 卡片 4：可解释性与高级分析思维 -->
-        <article class="card">
-          <h2 class="card-title">可解释性与高级分析思维</h2>
-          <p class="card-description">
-            不只追求效果，也重视「为什么」，提升模型和分析的可解释性与说服力。
-          </p>
-          <ul class="card-list">
-            <li>模型可解释性工具：SHAP、LIME 等方法的基本概念与使用示例。</li>
-            <li>诊断与调试：从残差、特征重要性中挖掘问题与机会。</li>
-            <li>风险与偏差：了解模型偏差、公平性和鲁棒性问题。</li>
-            <li>产品与策略视角：把高级模型结果转化为业务落地方案。</li>
-          </ul>
-        </article>
-      </div>
-    </section>
+      <article class="card">
+        <h2 class="card-title">模型可解释性与高级分析思维</h2>
+        <p class="card-description">
+          不只追求效果，更关注「为什么」和「能否被信任」。
+        </p>
+        <ul class="card-list">
+          <li>可解释性工具：特征重要性、SHAP、LIME 的基本概念与示例。</li>
+          <li>模型诊断：残差分析、数据漂移、错误案例深挖。</li>
+          <li>公平性与风险：识别模型偏差与潜在风险点。</li>
+          <li>策略与产品视角：把模型结果转化为可执行的产品策略。</li>
+        </ul>
+      </article>
+    </div>
   </main>
 </body>
 </html>
