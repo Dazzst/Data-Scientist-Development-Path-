@@ -2,81 +2,250 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>LEVEL 2 · Intermediate Data Analysis</title>
+  <title>LEVEL 1 · Basic Data Analysis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
+  <!-- 直接复用 index.html 里的内联样式 -->
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #020617;
+      --card-bg: #020617;
+      --card-border: rgba(148, 163, 184, 0.6);
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.16);
+      --text-main: #e5e7eb;
+      --text-sub: #9ca3af;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.4), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(129, 140, 248, 0.3), transparent 55%),
+        radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.25), transparent 55%),
+        #020617;
+      background-attachment: fixed;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 28px;
+      border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.94));
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-title {
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+    .nav-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+    .nav-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-sub);
+    }
+    .hero {
+      max-width: 1120px;
+      margin: 40px auto 24px;
+      padding: 0 20px;
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      margin-bottom: 10px;
+    }
+    .hero-title {
+      font-size: clamp(26px, 4.5vw, 34px);
+      font-weight: 650;
+      margin: 0 0 10px;
+      line-height: 1.15;
+    }
+    .hero-gradient {
+      background: linear-gradient(to right, #e5e7eb, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-sub);
+      max-width: 640px;
+    }
+    .back-link {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--text-sub);
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+    .back-link:hover {
+      color: var(--accent);
+    }
+    .grid-wrap {
+      max-width: 1120px;
+      margin: 0 auto 40px;
+      padding: 0 20px 24px;
+    }
+    /* 子页面这里不用真正 grid，就让卡片垂直排列 */
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .card {
+      position: relative;
+      padding: 16px 16px 18px;
+      border-radius: 18px;
+      border: 1px solid var(--card-border);
+      background:
+        radial-gradient(circle at top, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.98));
+      box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.6);
+      overflow: hidden;
+      transition:
+        transform 0.14s ease-out,
+        box-shadow 0.14s ease-out,
+        border-color 0.14s ease-out,
+        background 0.14s ease-out;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.4), transparent 60%),
+        radial-gradient(circle at 100% 0, rgba(168, 85, 247, 0.3), transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-out;
+    }
+    .card:hover {
+      transform: translateY(-3px) translateZ(0);
+      box-shadow:
+        0 24px 60px rgba(15, 23, 42, 0.95),
+        0 0 0 1px rgba(56, 189, 248, 0.6);
+      border-color: rgba(56, 189, 248, 0.9);
+      background:
+        radial-gradient(circle at top, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.98));
+    }
+    .card:hover::before {
+      opacity: 1;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .card-description {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+    .card-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+    .card-list li {
+      margin-bottom: 4px;
+    }
+  </style>
 </head>
 <body>
-  <main class="page">
-    <section class="level">
-      <header class="level-header">
-        <a href="index.html" class="back-link">← 返回首页</a>
-        <p class="level-label">LEVEL 2 · INTERMEDIATE</p>
-        <h1 class="level-title">Intermediate Data Analysis</h1>
-        <p class="level-description">
-          这一层聚焦经典机器学习、深度学习基础、数据工程与模型部署，让你从分析走向建模和落地。
+  <!-- 顶部导航，和 index 一样 -->
+  <header class="nav">
+    <div>
+      <div class="nav-title">DATA SCIENTIST DEVELOPMENT PATH</div>
+      <div class="nav-sub">Data Analysis · Projects · Resources</div>
+    </div>
+    <div class="nav-pill">dazzst · GitHub Pages</div>
+  </header>
+
+  <!-- 顶部说明 -->
+  <section class="hero">
+    <a href="index.html" class="back-link">← Back to Home</a>
+    <div class="hero-eyebrow">LEVEL 2 · INTERMEDIATE DATA ANALYSIS</div>
+    <h1 class="hero-title">
+      <span class="hero-gradient">Intermediate Data Analysis</span><br />
+      从分析走向建模与工程实践
+    </h1>
+    <p class="hero-subtitle">
+      这一层聚焦经典机器学习、深度学习基础、数据工程和模型部署，让你从「分析师」切换到「会建模、会落地」的数据科学角色。
+    </p>
+  </section>
+
+  <main class="grid-wrap">
+    <div class="column">
+      <article class="card">
+        <h2 class="card-title">经典机器学习</h2>
+        <p class="card-description">
+          从传统模型入手，理解监督学习和无监督学习的核心思想与评估方式。
         </p>
-      </header>
+        <ul class="card-list">
+          <li>线性/逻辑回归、决策树、SVM 等模型理论与假设。</li>
+          <li>模型评估与选择：Accuracy、Precision、Recall、F1、AUC、交叉验证。</li>
+          <li>集成学习：Random Forest、GBDT、XGBoost、LightGBM。</li>
+          <li>无监督学习：K-Means、DBSCAN 聚类，PCA、t-SNE 降维。 </li>
+        </ul>
+      </article>
 
-      <div class="cards">
-        <!-- 卡片 1：经典机器学习 -->
-        <article class="card">
-          <h2 class="card-title">经典机器学习</h2>
-          <p class="card-description">
-            从传统算法入手，理解分类、回归、聚类和降维的核心思想与评估指标。
-          </p>
-          <ul class="card-list">
-            <li>分类与回归：支持向量机（SVM）及其他基础模型。</li>
-            <li>树模型与集成：Random Forest、GBDT、XGBoost、LightGBM。</li>
-            <li>聚类与降维：K-Means、DBSCAN、PCA、t-SNE 等。</li>
-            <li>模型评估：Accuracy、Precision、Recall、F1、AUC 等指标。</li>
-          </ul>
-        </article>
+      <article class="card">
+        <h2 class="card-title">神经网络与深度学习基础</h2>
+        <p class="card-description">
+          掌握基础神经网络结构与训练流程，为后续 NLP / CV / 推荐打基础。
+        </p>
+        <ul class="card-list">
+          <li>核心概念：神经元、激活函数、损失函数、梯度下降。</li>
+          <li>常见结构：FNN、CNN、RNN / LSTM / GRU 的典型应用。</li>
+          <li>框架入门：TensorFlow / Keras 与 PyTorch 的基本使用。</li>
+          <li>在公开数据集上完成一个简单的分类/回归模型实验。</li>
+        </ul>
+      </article>
 
-        <!-- 卡片 2：神经网络与深度学习基础 -->
-        <article class="card">
-          <h2 class="card-title">神经网络与深度学习基础</h2>
-          <p class="card-description">
-            搭建和训练基础神经网络，理解深度学习的核心构件与常见网络结构。
-          </p>
-          <ul class="card-list">
-            <li>基础神经网络：全连接网络（FNN），前向传播与反向传播的直觉理解。</li>
-            <li>常见结构：CNN、RNN、LSTM、GRU 的典型应用场景。</li>
-            <li>框架入门：TensorFlow / Keras 与 PyTorch 的基本使用流程。</li>
-            <li>简单实践：在公开数据集上训练一个分类/回归模型并评估效果。</li>
-          </ul>
-        </article>
+      <article class="card">
+        <h2 class="card-title">数据工程与存储基础</h2>
+        <p class="card-description">
+          了解大数据生态与数据管道，为面向生产的系统化实践做准备。
+        </p>
+        <ul class="card-list">
+          <li>大数据生态：Hadoop、Spark 的角色与典型使用场景。</li>
+          <li>Spark 编程模型：RDD 与 DataFrame 的基本概念与常见操作。</li>
+          <li>数据仓库与数据湖：ETL / ELT 流程与分层设计的直觉。</li>
+          <li>云平台概览：AWS / Azure / GCP 中与数据相关的核心服务。</li>
+        </ul>
+      </article>
 
-        <!-- 卡片 3：数据工程与存储基础 -->
-        <article class="card">
-          <h2 class="card-title">数据工程与存储基础</h2>
-          <p class="card-description">
-            理解数据工程的基本组件，为大规模数据处理和生产环境做准备。
-          </p>
-          <ul class="card-list">
-            <li>大数据框架：Hadoop 与 Spark 的核心概念与典型使用场景。</li>
-            <li>Spark 编程模型：RDD 与 DataFrame 的区别与常见转换操作。</li>
-            <li>数据管道：ETL 与 ELT 的流程设计与实践要点。</li>
-            <li>云平台概览：AWS / Azure / GCP 中常见的数据与计算服务。</li>
-          </ul>
-        </article>
-
-        <!-- 卡片 4：模型部署与 MLOps 入门 -->
-        <article class="card">
-          <h2 class="card-title">模型部署与 MLOps 入门</h2>
-          <p class="card-description">
-            把模型从 Notebook 带到线上，理解端到端机器学习系统的基本形态。
-          </p>
-          <ul class="card-list">
-            <li>模型保存与格式：pickle、ONNX 等常见模型持久化方式。</li>
-            <li>服务化框架：用 Flask / FastAPI / Streamlit 包装模型为 API 或应用。</li>
-            <li>容器化：用 Docker 打包环境与服务，方便部署和迁移。</li>
-            <li>MLOps Pipeline 概念：数据 → 训练 → 部署 → 监控 的闭环思路。</li>
-          </ul>
-        </article>
-      </div>
-    </section>
+      <article class="card">
+        <h2 class="card-title">模型部署与 MLOps 入门</h2>
+        <p class="card-description">
+          让模型走出 Notebook，形成可访问、可维护的线上服务雏形。
+        </p>
+        <ul class="card-list">
+          <li>模型持久化：pickle、ONNX 等格式及使用注意事项。</li>
+          <li>服务化：使用 Flask / FastAPI / Streamlit 暴露推理接口或小应用。</li>
+          <li>容器化：用 Docker 打包环境与服务，支持跨环境部署。</li>
+          <li>初步理解 MLOps：数据→训练→部署→监控 的 Pipeline 思路。</li>
+        </ul>
+      </article>
+    </div>
   </main>
 </body>
 </html>
-
