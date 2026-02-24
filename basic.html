@@ -1,160 +1,84 @@
-<section id="level1-basic">
-  <h1>LEVEL 1 · 数据分析基础（Basic Data Analysis）</h1>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>LEVEL 1 · Basic Data Analysis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 用和 index 一样的样式文件 -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <!-- 顶部保持和 index 的 level header 对称 -->
+    <section class="level">
+      <header class="level-header">
+        <a href="index.html" class="back-link">← 返回首页</a>
+        <p class="level-label">LEVEL 1 · BASIC</p>
+        <h1 class="level-title">数据分析基础 · Basic Data Analysis</h1>
+        <p class="level-description">
+          这一层先把环境和工具搭好，打稳 Python + Pandas + 可视化的基础，能完成一个端到端的小分析项目。
+        </p>
+      </header>
 
-  <p>
-    本阶段目标：从零搭建数据分析环境，掌握 Python 语言基础与常用数据分析工具，
-    能够独立完成一个小型数据分析项目并产出可阅读的报告。
-  </p>
+      <!-- 这里就是你说的几个「框框」 -->
+      <div class="cards">
+        <!-- 卡片 1：编程工具与环境 -->
+        <article class="card">
+          <h2 class="card-title">编程工具与环境</h2>
+          <p class="card-description">
+            安装配置 Python 环境，熟悉日常开发工具和项目目录结构，给后面所有阶段打地基。
+          </p>
+          <ul class="card-list">
+            <li>Anaconda / Miniconda 安装与虚拟环境管理。</li>
+            <li>VS Code 与 Jupyter Notebook / Lab 的基本使用。</li>
+            <li>约定统一的项目结构：data / notebooks / src / outputs。</li>
+            <li>用 Git 管理练习项目，并托管到 GitHub。</li>
+          </ul>
+        </article>
 
-  <!-- 一、环境与工程基础 -->
-  <h2>一、环境与工程基础（Environment & Engineering）</h2>
+        <!-- 卡片 2：Python 基础 -->
+        <article class="card">
+          <h2 class="card-title">Python 语言基础</h2>
+          <p class="card-description">
+            用代码表达你的思路，写得出小脚本，读得懂示例代码。
+          </p>
+          <ul class="card-list">
+            <li>基础类型与容器：数字、字符串、list、dict、set。</li>
+            <li>控制流程：if / for / while，列表推导式。</li>
+            <li>函数与模块：参数、返回值、标准库的基本使用。</li>
+            <li>文件读写与简单异常处理，读写 CSV 文本。</li>
+          </ul>
+        </article>
 
-  <h3>1.1 Python 发行版与虚拟环境</h3>
-  <ul>
-    <li>推荐安装 Anaconda 或 Miniconda，统一管理 Python 版本与第三方库。</li>
-    <li>学会使用 <code>conda</code> 或 <code>pip</code> 创建、激活、删除虚拟环境。</li>
-    <li>理解 <code>requirements.txt</code> 和 <code>environment.yml</code> 的作用，用于导出和复现环境。</li>
-  </ul>
+        <!-- 卡片 3：Numpy 与 Pandas -->
+        <article class="card">
+          <h2 class="card-title">Numpy 与 Pandas</h2>
+          <p class="card-description">
+            学会真正用 Pandas 和 Numpy 操作数据，是数据分析的核心工作台。
+          </p>
+          <ul class="card-list">
+            <li>Numpy ndarray：创建、索引、切片和基本聚合。</li>
+            <li>Pandas Series / DataFrame：读取 CSV / Excel，查看概况。</li>
+            <li>数据清洗：缺失值、重复值、类型转换和新特征构造。</li>
+            <li>groupby、pivot_table 做汇总统计和业务指标分析。</li>
+          </ul>
+        </article>
 
-  <h3>1.2 开发工具与运行方式</h3>
-  <ul>
-    <li>VS Code：安装 Python 插件，配置解释器，运行 <code>.py</code> 文件，设置断点进行调试。</li>
-    <li>Jupyter Notebook / JupyterLab：创建 notebook，分单元格编写、运行代码与说明文字。</li>
-    <li>命令行运行脚本：在终端中使用 <code>python main.py</code> 执行项目入口文件。</li>
-  </ul>
-
-  <h3>1.3 项目结构与版本控制</h3>
-  <ul>
-    <li>基础目录结构示例：
-      <pre><code>project/
-  data/
-    raw/        # 原始数据
-    processed/  # 处理后的数据
-  notebooks/    # 探索性分析与实验
-  src/          # 可复用脚本与函数
-  outputs/      # 图表、报告等输出
-  README.md     # 项目说明
-      </code></pre>
-    </li>
-    <li>使用 Git 做版本控制：<code>git init</code>、<code>git add</code>、<code>git commit</code>、<code>git log</code> 等基础命令。</li>
-    <li>将项目托管到 GitHub，养成小步提交、写清 commit message 的工程习惯。</li>
-  </ul>
-
-  <!-- 二、Python 语言基础 -->
-  <h2>二、Python 语言基础（Python Basics）</h2>
-
-  <p>本小节目标：掌握 Python 核心语法，能够编写简单脚本，为后续数据分析打基础。</p>
-
-  <h3>2.1 核心数据类型与容器</h3>
-  <ul>
-    <li>基本类型：<code>int</code>、<code>float</code>、<code>str</code>、<code>bool</code>。</li>
-    <li>容器类型：<code>list</code>、<code>tuple</code>、<code>dict</code>、<code>set</code>，掌握增删改查和遍历。</li>
-    <li>常用内置函数：<code>len</code>、<code>type</code>、<code>sorted</code>、<code>range</code> 等。</li>
-  </ul>
-
-  <h3>2.2 控制流程</h3>
-  <ul>
-    <li>条件语句：<code>if / elif / else</code>，根据条件执行不同分支。</li>
-    <li>循环语句：<code>for</code>、<code>while</code>，配合 <code>break</code>、<code>continue</code> 使用。</li>
-    <li>列表推导式：用一行代码完成「循环 + 条件 + 构造新列表」。</li>
-  </ul>
-
-  <h3>2.3 函数与模块</h3>
-  <ul>
-    <li>函数定义：参数、返回值、默认参数、关键字参数，理解「封装」思想。</li>
-    <li>模块与包：<code>import</code>、<code>from ... import ...</code> 的基本用法。</li>
-    <li>常用标准库：<code>os</code>、<code>pathlib</code>、<code>datetime</code> 等在数据分析项目中的简单应用。</li>
-  </ul>
-
-  <h3>2.4 文件读写与异常处理</h3>
-  <ul>
-    <li>使用 <code>open</code> 读写文本文件，理解文本模式与二进制模式的区别。</li>
-    <li>用 Python 读取和写入 CSV 文件（不依赖第三方库的基础方式）。</li>
-    <li>简单异常处理：<code>try / except</code>，提升脚本的稳定性和可维护性。</li>
-  </ul>
-
-  <!-- 三、Numpy 与 Pandas 数据分析 -->
-  <h2>三、Numpy 与 Pandas 数据分析</h2>
-
-  <p>本小节目标：掌握 Numpy 与 Pandas 的核心用法，能够完成数据加载、清洗、转换与基础分析。</p>
-
-  <h3>3.1 Numpy 基础</h3>
-  <ul>
-    <li>创建 ndarray：<code>np.array</code>、<code>np.zeros</code>、<code>np.ones</code>、<code>np.arange</code> 等。</li>
-    <li>数组属性：<code>shape</code>、<code>dtype</code>，基本索引与切片。</li>
-    <li>常见运算：元素级加减乘除、聚合函数（均值、标准差、最大值、最小值）以及基本矩阵运算。</li>
-  </ul>
-
-  <h3>3.2 Pandas 数据结构</h3>
-  <ul>
-    <li>Series 与 DataFrame 的概念与区别。</li>
-    <li>数据读取：<code>read_csv</code>、<code>read_excel</code>，了解 <code>read_sql</code> 的存在。</li>
-    <li>数据浏览：<code>head</code>、<code>tail</code>、<code>info</code>、<code>describe</code>、<code>value_counts</code>。</li>
-  </ul>
-
-  <h3>3.3 数据清洗与特征构造</h3>
-  <ul>
-    <li>缺失值处理：<code>isna</code> / <code>notna</code>、<code>fillna</code>、<code>dropna</code>。</li>
-    <li>重复值处理：<code>drop_duplicates</code>，理解唯一键的概念。</li>
-    <li>类型转换：<code>astype</code>，字符串列转时间 <code>to_datetime</code> 等。</li>
-    <li>新特征构造：基于运算或条件创建新列，使用 <code>loc</code> 按条件赋值。</li>
-  </ul>
-
-  <h3>3.4 分组、透视与合并</h3>
-  <ul>
-    <li>分组聚合：<code>groupby</code> + <code>sum</code>/<code>mean</code>/<code>count</code> 等。</li>
-    <li>透视表：<code>pivot_table</code>、<code>crosstab</code> 实现多维统计。</li>
-    <li>多表合并：<code>merge</code>、<code>join</code>，理解 inner / left / right / outer 等连接方式。</li>
-  </ul>
-
-  <!-- 四、数据可视化与结果输出 -->
-  <h2>四、数据可视化与结果输出</h2>
-
-  <p>本小节目标：用图表直观表达分析结论，并将结果导出为可分享的形式。</p>
-
-  <h3>4.1 基础图表类型</h3>
-  <ul>
-    <li>Matplotlib：折线图、柱状图、散点图、直方图。</li>
-    <li>Seaborn：<code>countplot</code>、<code>boxplot</code>、<code>heatmap</code> 等常用统计图。</li>
-    <li>根据数据类型和问题选择合适图表，避免误导性可视化。</li>
-  </ul>
-
-  <h3>4.2 图表美化与布局</h3>
-  <ul>
-    <li>设置标题、坐标轴标签、图例、刻度和颜色。</li>
-    <li>使用子图（subplot）展示多个相关图表，讲清一个完整问题。</li>
-    <li>控制图像尺寸、分辨率，为报告或 PPT 准备高质量图像。</li>
-  </ul>
-
-  <h3>4.3 报告与导出</h3>
-  <ul>
-    <li>在 Notebook 中用 Markdown 编写分析过程与结论，形成带图表的故事化报告。</li>
-    <li>导出结果：将关键表格保存为 CSV/Excel，将图像保存为 PNG/SVG。</li>
-    <li>为未来复现预留信息：记录数据来源、处理步骤、关键参数。</li>
-  </ul>
-
-  <!-- 五、小项目与阶段产出 -->
-  <h2>五、小项目与阶段产出（Milestone）</h2>
-
-  <p>本小节目标：通过一个端到端的小项目，把本阶段的知识串起来，形成可展示的成果。</p>
-
-  <h3>5.1 小项目要求</h3>
-  <ul>
-    <li>选择至少一个公开数据集，例如：销售数据、用户行为数据、简单 A/B 测试数据等。</li>
-    <li>完整流程：数据加载 → 清洗 → 分析 → 可视化 → 结论与建议。</li>
-    <li>在项目中至少使用一次 <code>groupby</code>、一次透视表和若干图表。</li>
-  </ul>
-
-  <h3>5.2 工程化实践</h3>
-  <ul>
-    <li>按照约定目录结构组织代码、数据和输出。</li>
-    <li>用 Git 记录关键阶段的提交，例如：完成清洗、完成 EDA、完成可视化。</li>
-    <li>编写 <code>README.md</code>，说明项目背景、数据来源、主要问题、方法和结论。</li>
-  </ul>
-
-  <h3>5.3 进阶指引</h3>
-  <ul>
-    <li>如果顺利完成本阶段，可以继续学习：SQL、统计学基础、可视化/BI 工具（如 Power BI、Tableau）。</li>
-    <li>为后续机器学习、实验设计等主题打下数据与工程基础。</li>
-  </ul>
-</section>
+        <!-- 卡片 4：可视化与数据故事 -->
+        <article class="card">
+          <h2 class="card-title">可视化与数据故事</h2>
+          <p class="card-description">
+            用合适的图表和结构化叙事，把结论讲清楚，而不是只给一堆表。
+          </p>
+          <ul class="card-list">
+            <li>Matplotlib / Seaborn 画常用图：折线、柱状、散点、直方图。</li>
+            <li>图表美化：标题、坐标轴、图例、子图布局与配色。</li>
+            <li>结构化报告：问题 → 分析过程 → 发现 → 结论与建议。</li>
+            <li>完成一个端到端小项目作为 Level 1 里程碑。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
