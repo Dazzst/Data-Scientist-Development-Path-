@@ -1,157 +1,160 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <title>数据分析基础 · Basic Data Analysis</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #020617;
-      color: #e5e7eb;
-    }
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 24px;
-      border-bottom: 1px solid rgba(30, 64, 175, 0.7);
-      background: rgba(15, 23, 42, 0.96);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .nav-title {
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-    .nav-back {
-      font-size: 12px;
-      color: #9ca3af;
-      text-decoration: none;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      background: rgba(15, 23, 42, 0.96);
-    }
-    .nav-back:hover {
-      border-color: #38bdf8;
-      color: #e5e7eb;
-    }
+<section id="level1-basic">
+  <h1>LEVEL 1 · 数据分析基础（Basic Data Analysis）</h1>
 
-    .wrap {
-      max-width: 920px;
-      margin: 26px auto 40px;
-      padding: 0 20px;
-    }
-    h1 {
-      font-size: 26px;
-      margin-bottom: 6px;
-    }
-    .badge {
-      font-size: 11px;
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(56, 189, 248, 0.7);
-      color: #38bdf8;
-      background: rgba(56, 189, 248, 0.1);
-      margin-bottom: 10px;
-    }
-    .summary {
-      font-size: 14px;
-      color: #9ca3af;
-      margin-bottom: 16px;
-    }
-    h2 {
-      font-size: 16px;
-      margin-top: 20px;
-      margin-bottom: 6px;
-    }
-    ul {
-      margin: 0 0 4px;
-      padding-left: 20px;
-      font-size: 14px;
-    }
-    li {
-      margin-bottom: 4px;
-    }
-    .note {
-      font-size: 12px;
-      color: #9ca3af;
-      margin-top: 14px;
-    }
-    code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 12px;
-      background: rgba(15, 23, 42, 0.95);
-      padding: 2px 4px;
-      border-radius: 4px;
-      border: 1px solid rgba(51, 65, 85, 0.9);
-    }
-  </style>
-</head>
-<body>
-  <header class="nav">
-    <div class="nav-left">
-      <a class="nav-back" href="index.html">← 返回主页</a>
-      <div>
-        <div class="nav-title">LEVEL 1 · BASIC DATA ANALYSIS</div>
-      </div>
-    </div>
-  </header>
+  <p>
+    本阶段目标：从零搭建数据分析环境，掌握 Python 语言基础与常用数据分析工具，
+    能够独立完成一个小型数据分析项目并产出可阅读的报告。
+  </p>
 
-  <main class="wrap">
-    <span class="badge">目标：搭建工具链 + 完成基础分析</span>
-    <h1>数据分析基础（Basic Data Analysis）</h1>
-    <p class="summary">
-      这一阶段的核心，是熟悉 Python、Pandas 和基础可视化工具，能够在 Notebook 里完成一个完整的「从数据加载到简单结论」的流程。
-    </p>
+  <!-- 一、环境与工程基础 -->
+  <h2>一、环境与工程基础（Environment & Engineering）</h2>
 
-    <h2>一、环境与工具</h2>
-    <ul>
-      <li>安装并熟悉 Anaconda / Python、VS Code 或 Jupyter Notebook。</li>
-      <li>学会创建虚拟环境、安装常用包（如 <code>pandas</code>、<code>numpy</code>、<code>matplotlib</code>）。</li>
-      <li>掌握 Git 的最基础用法：初始化仓库、提交、推送到 GitHub。</li>
-    </ul>
+  <h3>1.1 Python 发行版与虚拟环境</h3>
+  <ul>
+    <li>推荐安装 Anaconda 或 Miniconda，统一管理 Python 版本与第三方库。</li>
+    <li>学会使用 <code>conda</code> 或 <code>pip</code> 创建、激活、删除虚拟环境。</li>
+    <li>理解 <code>requirements.txt</code> 和 <code>environment.yml</code> 的作用，用于导出和复现环境。</li>
+  </ul>
 
-    <h2>二、Python 语言基础</h2>
-    <ul>
-      <li>变量、数值、字符串、列表、字典等基础数据类型。</li>
-      <li>条件判断与循环（if / for / while）。</li>
-      <li>函数的定义与调用，模块与包的基本概念。</li>
-    </ul>
+  <h3>1.2 开发工具与运行方式</h3>
+  <ul>
+    <li>VS Code：安装 Python 插件，配置解释器，运行 <code>.py</code> 文件，设置断点进行调试。</li>
+    <li>Jupyter Notebook / JupyterLab：创建 notebook，分单元格编写、运行代码与说明文字。</li>
+    <li>命令行运行脚本：在终端中使用 <code>python main.py</code> 执行项目入口文件。</li>
+  </ul>
 
-    <h2>三、Pandas 数据分析入门</h2>
-    <ul>
-      <li>读取数据：CSV / Excel / SQL 到 DataFrame。</li>
-      <li>查看与选择：<code>head()</code>、<code>info()</code>、<code>describe()</code>、列选择与行筛选。</li>
-      <li>数据清洗：处理缺失值、去重、类型转换、简单派生字段。</li>
-    </ul>
+  <h3>1.3 项目结构与版本控制</h3>
+  <ul>
+    <li>基础目录结构示例：
+      <pre><code>project/
+  data/
+    raw/        # 原始数据
+    processed/  # 处理后的数据
+  notebooks/    # 探索性分析与实验
+  src/          # 可复用脚本与函数
+  outputs/      # 图表、报告等输出
+  README.md     # 项目说明
+      </code></pre>
+    </li>
+    <li>使用 Git 做版本控制：<code>git init</code>、<code>git add</code>、<code>git commit</code>、<code>git log</code> 等基础命令。</li>
+    <li>将项目托管到 GitHub，养成小步提交、写清 commit message 的工程习惯。</li>
+  </ul>
 
-    <h2>四、基础可视化</h2>
-    <ul>
-      <li>使用 Matplotlib / Seaborn 画折线图、柱状图、散点图、直方图。</li>
-      <li>学会设置标题、坐标轴标签、图例等基本元素。</li>
-      <li>尝试用 2～3 个图同时讲清一个问题。</li>
-    </ul>
+  <!-- 二、Python 语言基础 -->
+  <h2>二、Python 语言基础（Python Basics）</h2>
 
-    <h2>五、阶段小结与产出</h2>
-    <ul>
-      <li>完成 1～2 个公开数据集的小项目（例如：简单的销售数据 / 用户行为数据）。</li>
-      <li>整理出你的第一个「基础分析模板」Notebook，后面阶段可以在此基础上扩展。</li>
-    </ul>
+  <p>本小节目标：掌握 Python 核心语法，能够编写简单脚本，为后续数据分析打基础。</p>
 
-    <p class="note">
-      建议：在 GitHub 仓库中为本阶段建立一个 <code>basic/</code> 文件夹，放基础项目和 Notebook，并在 README 里简要说明练习内容。
-    </p>
-  </main>
-</body>
-</html>
+  <h3>2.1 核心数据类型与容器</h3>
+  <ul>
+    <li>基本类型：<code>int</code>、<code>float</code>、<code>str</code>、<code>bool</code>。</li>
+    <li>容器类型：<code>list</code>、<code>tuple</code>、<code>dict</code>、<code>set</code>，掌握增删改查和遍历。</li>
+    <li>常用内置函数：<code>len</code>、<code>type</code>、<code>sorted</code>、<code>range</code> 等。</li>
+  </ul>
+
+  <h3>2.2 控制流程</h3>
+  <ul>
+    <li>条件语句：<code>if / elif / else</code>，根据条件执行不同分支。</li>
+    <li>循环语句：<code>for</code>、<code>while</code>，配合 <code>break</code>、<code>continue</code> 使用。</li>
+    <li>列表推导式：用一行代码完成「循环 + 条件 + 构造新列表」。</li>
+  </ul>
+
+  <h3>2.3 函数与模块</h3>
+  <ul>
+    <li>函数定义：参数、返回值、默认参数、关键字参数，理解「封装」思想。</li>
+    <li>模块与包：<code>import</code>、<code>from ... import ...</code> 的基本用法。</li>
+    <li>常用标准库：<code>os</code>、<code>pathlib</code>、<code>datetime</code> 等在数据分析项目中的简单应用。</li>
+  </ul>
+
+  <h3>2.4 文件读写与异常处理</h3>
+  <ul>
+    <li>使用 <code>open</code> 读写文本文件，理解文本模式与二进制模式的区别。</li>
+    <li>用 Python 读取和写入 CSV 文件（不依赖第三方库的基础方式）。</li>
+    <li>简单异常处理：<code>try / except</code>，提升脚本的稳定性和可维护性。</li>
+  </ul>
+
+  <!-- 三、Numpy 与 Pandas 数据分析 -->
+  <h2>三、Numpy 与 Pandas 数据分析</h2>
+
+  <p>本小节目标：掌握 Numpy 与 Pandas 的核心用法，能够完成数据加载、清洗、转换与基础分析。</p>
+
+  <h3>3.1 Numpy 基础</h3>
+  <ul>
+    <li>创建 ndarray：<code>np.array</code>、<code>np.zeros</code>、<code>np.ones</code>、<code>np.arange</code> 等。</li>
+    <li>数组属性：<code>shape</code>、<code>dtype</code>，基本索引与切片。</li>
+    <li>常见运算：元素级加减乘除、聚合函数（均值、标准差、最大值、最小值）以及基本矩阵运算。</li>
+  </ul>
+
+  <h3>3.2 Pandas 数据结构</h3>
+  <ul>
+    <li>Series 与 DataFrame 的概念与区别。</li>
+    <li>数据读取：<code>read_csv</code>、<code>read_excel</code>，了解 <code>read_sql</code> 的存在。</li>
+    <li>数据浏览：<code>head</code>、<code>tail</code>、<code>info</code>、<code>describe</code>、<code>value_counts</code>。</li>
+  </ul>
+
+  <h3>3.3 数据清洗与特征构造</h3>
+  <ul>
+    <li>缺失值处理：<code>isna</code> / <code>notna</code>、<code>fillna</code>、<code>dropna</code>。</li>
+    <li>重复值处理：<code>drop_duplicates</code>，理解唯一键的概念。</li>
+    <li>类型转换：<code>astype</code>，字符串列转时间 <code>to_datetime</code> 等。</li>
+    <li>新特征构造：基于运算或条件创建新列，使用 <code>loc</code> 按条件赋值。</li>
+  </ul>
+
+  <h3>3.4 分组、透视与合并</h3>
+  <ul>
+    <li>分组聚合：<code>groupby</code> + <code>sum</code>/<code>mean</code>/<code>count</code> 等。</li>
+    <li>透视表：<code>pivot_table</code>、<code>crosstab</code> 实现多维统计。</li>
+    <li>多表合并：<code>merge</code>、<code>join</code>，理解 inner / left / right / outer 等连接方式。</li>
+  </ul>
+
+  <!-- 四、数据可视化与结果输出 -->
+  <h2>四、数据可视化与结果输出</h2>
+
+  <p>本小节目标：用图表直观表达分析结论，并将结果导出为可分享的形式。</p>
+
+  <h3>4.1 基础图表类型</h3>
+  <ul>
+    <li>Matplotlib：折线图、柱状图、散点图、直方图。</li>
+    <li>Seaborn：<code>countplot</code>、<code>boxplot</code>、<code>heatmap</code> 等常用统计图。</li>
+    <li>根据数据类型和问题选择合适图表，避免误导性可视化。</li>
+  </ul>
+
+  <h3>4.2 图表美化与布局</h3>
+  <ul>
+    <li>设置标题、坐标轴标签、图例、刻度和颜色。</li>
+    <li>使用子图（subplot）展示多个相关图表，讲清一个完整问题。</li>
+    <li>控制图像尺寸、分辨率，为报告或 PPT 准备高质量图像。</li>
+  </ul>
+
+  <h3>4.3 报告与导出</h3>
+  <ul>
+    <li>在 Notebook 中用 Markdown 编写分析过程与结论，形成带图表的故事化报告。</li>
+    <li>导出结果：将关键表格保存为 CSV/Excel，将图像保存为 PNG/SVG。</li>
+    <li>为未来复现预留信息：记录数据来源、处理步骤、关键参数。</li>
+  </ul>
+
+  <!-- 五、小项目与阶段产出 -->
+  <h2>五、小项目与阶段产出（Milestone）</h2>
+
+  <p>本小节目标：通过一个端到端的小项目，把本阶段的知识串起来，形成可展示的成果。</p>
+
+  <h3>5.1 小项目要求</h3>
+  <ul>
+    <li>选择至少一个公开数据集，例如：销售数据、用户行为数据、简单 A/B 测试数据等。</li>
+    <li>完整流程：数据加载 → 清洗 → 分析 → 可视化 → 结论与建议。</li>
+    <li>在项目中至少使用一次 <code>groupby</code>、一次透视表和若干图表。</li>
+  </ul>
+
+  <h3>5.2 工程化实践</h3>
+  <ul>
+    <li>按照约定目录结构组织代码、数据和输出。</li>
+    <li>用 Git 记录关键阶段的提交，例如：完成清洗、完成 EDA、完成可视化。</li>
+    <li>编写 <code>README.md</code>，说明项目背景、数据来源、主要问题、方法和结论。</li>
+  </ul>
+
+  <h3>5.3 进阶指引</h3>
+  <ul>
+    <li>如果顺利完成本阶段，可以继续学习：SQL、统计学基础、可视化/BI 工具（如 Power BI、Tableau）。</li>
+    <li>为后续机器学习、实验设计等主题打下数据与工程基础。</li>
+  </ul>
+</section>
