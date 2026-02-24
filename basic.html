@@ -4,81 +4,249 @@
   <meta charset="UTF-8" />
   <title>LEVEL 1 · Basic Data Analysis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- 用和 index 一样的样式文件 -->
-  <link rel="stylesheet" href="styles.css" />
+  <!-- 直接复用 index.html 里的内联样式 -->
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #020617;
+      --card-bg: #020617;
+      --card-border: rgba(148, 163, 184, 0.6);
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.16);
+      --text-main: #e5e7eb;
+      --text-sub: #9ca3af;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.4), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(129, 140, 248, 0.3), transparent 55%),
+        radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.25), transparent 55%),
+        #020617;
+      background-attachment: fixed;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 28px;
+      border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.94));
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-title {
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+    .nav-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+    .nav-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-sub);
+    }
+    .hero {
+      max-width: 1120px;
+      margin: 40px auto 24px;
+      padding: 0 20px;
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      margin-bottom: 10px;
+    }
+    .hero-title {
+      font-size: clamp(26px, 4.5vw, 34px);
+      font-weight: 650;
+      margin: 0 0 10px;
+      line-height: 1.15;
+    }
+    .hero-gradient {
+      background: linear-gradient(to right, #e5e7eb, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-sub);
+      max-width: 640px;
+    }
+    .back-link {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--text-sub);
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+    .back-link:hover {
+      color: var(--accent);
+    }
+    .grid-wrap {
+      max-width: 1120px;
+      margin: 0 auto 40px;
+      padding: 0 20px 24px;
+    }
+    /* 子页面这里不用真正 grid，就让卡片垂直排列 */
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .card {
+      position: relative;
+      padding: 16px 16px 18px;
+      border-radius: 18px;
+      border: 1px solid var(--card-border);
+      background:
+        radial-gradient(circle at top, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.98));
+      box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.6);
+      overflow: hidden;
+      transition:
+        transform 0.14s ease-out,
+        box-shadow 0.14s ease-out,
+        border-color 0.14s ease-out,
+        background 0.14s ease-out;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.4), transparent 60%),
+        radial-gradient(circle at 100% 0, rgba(168, 85, 247, 0.3), transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-out;
+    }
+    .card:hover {
+      transform: translateY(-3px) translateZ(0);
+      box-shadow:
+        0 24px 60px rgba(15, 23, 42, 0.95),
+        0 0 0 1px rgba(56, 189, 248, 0.6);
+      border-color: rgba(56, 189, 248, 0.9);
+      background:
+        radial-gradient(circle at top, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.98));
+    }
+    .card:hover::before {
+      opacity: 1;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .card-description {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+    .card-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+    .card-list li {
+      margin-bottom: 4px;
+    }
+  </style>
 </head>
 <body>
-  <main class="page">
-    <!-- 顶部保持和 index 的 level header 对称 -->
-    <section class="level">
-      <header class="level-header">
-        <a href="index.html" class="back-link">← 返回首页</a>
-        <p class="level-label">LEVEL 1 · BASIC</p>
-        <h1 class="level-title">数据分析基础 · Basic Data Analysis</h1>
-        <p class="level-description">
-          这一层先把环境和工具搭好，打稳 Python + Pandas + 可视化的基础，能完成一个端到端的小分析项目。
+  <!-- 顶部导航，和 index 一样 -->
+  <header class="nav">
+    <div>
+      <div class="nav-title">DATA SCIENTIST DEVELOPMENT PATH</div>
+      <div class="nav-sub">Data Analysis · Projects · Resources</div>
+    </div>
+    <div class="nav-pill">dazzst · GitHub Pages</div>
+  </header>
+
+  <!-- 顶部说明 -->
+  <section class="hero">
+    <a href="index.html" class="back-link">← Back to Home</a>
+    <div class="hero-eyebrow">LEVEL 1 · BASIC DATA ANALYSIS</div>
+    <h1 class="hero-title">
+      <span class="hero-gradient">Basic Data Analysis</span><br />
+      从环境、Python 到 Pandas 的系统入门
+    </h1>
+    <p class="hero-subtitle">
+      这一层的目标是搭好开发环境，打牢 Python 和数据分析工具的基础，完成至少一个端到端的小型数据分析项目。
+    </p>
+  </section>
+
+  <!-- 正文：几个「框框」 -->
+  <main class="grid-wrap">
+    <div class="column">
+      <article class="card">
+        <h2 class="card-title">编程工具与环境</h2>
+        <p class="card-description">
+          安装配置 Python 环境，熟悉日常开发工具和项目目录结构，给后续所有阶段打地基。
         </p>
-      </header>
+        <ul class="card-list">
+          <li>Anaconda / Miniconda 安装与虚拟环境管理。</li>
+          <li>VS Code 与 Jupyter Notebook / Lab 的基本使用。</li>
+          <li>约定统一的项目结构：data / notebooks / src / outputs。</li>
+          <li>用 Git 管理练习项目，并托管到 GitHub。</li>
+        </ul>
+      </article>
 
-      <!-- 这里就是你说的几个「框框」 -->
-      <div class="cards">
-        <!-- 卡片 1：编程工具与环境 -->
-        <article class="card">
-          <h2 class="card-title">编程工具与环境</h2>
-          <p class="card-description">
-            安装配置 Python 环境，熟悉日常开发工具和项目目录结构，给后面所有阶段打地基。
-          </p>
-          <ul class="card-list">
-            <li>Anaconda / Miniconda 安装与虚拟环境管理。</li>
-            <li>VS Code 与 Jupyter Notebook / Lab 的基本使用。</li>
-            <li>约定统一的项目结构：data / notebooks / src / outputs。</li>
-            <li>用 Git 管理练习项目，并托管到 GitHub。</li>
-          </ul>
-        </article>
+      <article class="card">
+        <h2 class="card-title">Python 语言基础</h2>
+        <p class="card-description">
+          用代码表达你的思路，写得出小脚本，读得懂示例代码。
+        </p>
+        <ul class="card-list">
+          <li>基础类型与容器：数字、字符串、list、dict、set。</li>
+          <li>控制流程：if / for / while，列表推导式。</li>
+          <li>函数与模块：参数、返回值、标准库的基本使用。</li>
+          <li>文件读写与简单异常处理，读写 CSV 文本。</li>
+        </ul>
+      </article>
 
-        <!-- 卡片 2：Python 基础 -->
-        <article class="card">
-          <h2 class="card-title">Python 语言基础</h2>
-          <p class="card-description">
-            用代码表达你的思路，写得出小脚本，读得懂示例代码。
-          </p>
-          <ul class="card-list">
-            <li>基础类型与容器：数字、字符串、list、dict、set。</li>
-            <li>控制流程：if / for / while，列表推导式。</li>
-            <li>函数与模块：参数、返回值、标准库的基本使用。</li>
-            <li>文件读写与简单异常处理，读写 CSV 文本。</li>
-          </ul>
-        </article>
+      <article class="card">
+        <h2 class="card-title">Numpy 与 Pandas</h2>
+        <p class="card-description">
+          学会真正用 Pandas 和 Numpy 操作数据，是数据分析的核心工作台。
+        </p>
+        <ul class="card-list">
+          <li>Numpy ndarray：创建、索引、切片和基本聚合。</li>
+          <li>Pandas Series / DataFrame：读取 CSV / Excel，查看概况。</li>
+          <li>数据清洗：缺失值、重复值、类型转换和新特征构造。</li>
+          <li>groupby、pivot_table 做汇总统计和业务指标分析。</li>
+        </ul>
+      </article>
 
-        <!-- 卡片 3：Numpy 与 Pandas -->
-        <article class="card">
-          <h2 class="card-title">Numpy 与 Pandas</h2>
-          <p class="card-description">
-            学会真正用 Pandas 和 Numpy 操作数据，是数据分析的核心工作台。
-          </p>
-          <ul class="card-list">
-            <li>Numpy ndarray：创建、索引、切片和基本聚合。</li>
-            <li>Pandas Series / DataFrame：读取 CSV / Excel，查看概况。</li>
-            <li>数据清洗：缺失值、重复值、类型转换和新特征构造。</li>
-            <li>groupby、pivot_table 做汇总统计和业务指标分析。</li>
-          </ul>
-        </article>
-
-        <!-- 卡片 4：可视化与数据故事 -->
-        <article class="card">
-          <h2 class="card-title">可视化与数据故事</h2>
-          <p class="card-description">
-            用合适的图表和结构化叙事，把结论讲清楚，而不是只给一堆表。
-          </p>
-          <ul class="card-list">
-            <li>Matplotlib / Seaborn 画常用图：折线、柱状、散点、直方图。</li>
-            <li>图表美化：标题、坐标轴、图例、子图布局与配色。</li>
-            <li>结构化报告：问题 → 分析过程 → 发现 → 结论与建议。</li>
-            <li>完成一个端到端小项目作为 Level 1 里程碑。</li>
-          </ul>
-        </article>
-      </div>
-    </section>
+      <article class="card">
+        <h2 class="card-title">可视化与数据故事</h2>
+        <p class="card-description">
+          用合适的图表和结构化叙事，把结论讲清楚，而不是只给一堆表。
+        </p>
+        <ul class="card-list">
+          <li>Matplotlib / Seaborn 画常用图：折线、柱状、散点、直方图。</li>
+          <li>图表美化：标题、坐标轴、图例、子图布局与配色。</li>
+          <li>结构化报告：问题 → 分析过程 → 发现 → 结论与建议。</li>
+          <li>完成一个端到端小项目作为 Level 1 里程碑。</li>
+        </ul>
+      </article>
+    </div>
   </main>
 </body>
 </html>
