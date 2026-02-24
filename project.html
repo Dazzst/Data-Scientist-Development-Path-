@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>LEVEL 1 · Basic Data Analysis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 直接复用 index.html 里的内联样式 -->
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #020617;
+      --card-bg: #020617;
+      --card-border: rgba(148, 163, 184, 0.6);
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.16);
+      --text-main: #e5e7eb;
+      --text-sub: #9ca3af;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.4), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(129, 140, 248, 0.3), transparent 55%),
+        radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.25), transparent 55%),
+        #020617;
+      background-attachment: fixed;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 28px;
+      border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.94));
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-title {
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+    .nav-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+    .nav-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-sub);
+    }
+    .hero {
+      max-width: 1120px;
+      margin: 40px auto 24px;
+      padding: 0 20px;
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      margin-bottom: 10px;
+    }
+    .hero-title {
+      font-size: clamp(26px, 4.5vw, 34px);
+      font-weight: 650;
+      margin: 0 0 10px;
+      line-height: 1.15;
+    }
+    .hero-gradient {
+      background: linear-gradient(to right, #e5e7eb, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-sub);
+      max-width: 640px;
+    }
+    .back-link {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--text-sub);
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+    .back-link:hover {
+      color: var(--accent);
+    }
+    .grid-wrap {
+      max-width: 1120px;
+      margin: 0 auto 40px;
+      padding: 0 20px 24px;
+    }
+    /* 子页面这里不用真正 grid，就让卡片垂直排列 */
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .card {
+      position: relative;
+      padding: 16px 16px 18px;
+      border-radius: 18px;
+      border: 1px solid var(--card-border);
+      background:
+        radial-gradient(circle at top, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.98));
+      box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.6);
+      overflow: hidden;
+      transition:
+        transform 0.14s ease-out,
+        box-shadow 0.14s ease-out,
+        border-color 0.14s ease-out,
+        background 0.14s ease-out;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.4), transparent 60%),
+        radial-gradient(circle at 100% 0, rgba(168, 85, 247, 0.3), transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-out;
+    }
+    .card:hover {
+      transform: translateY(-3px) translateZ(0);
+      box-shadow:
+        0 24px 60px rgba(15, 23, 42, 0.95),
+        0 0 0 1px rgba(56, 189, 248, 0.6);
+      border-color: rgba(56, 189, 248, 0.9);
+      background:
+        radial-gradient(circle at top, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.98));
+    }
+    .card:hover::before {
+      opacity: 1;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .card-description {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+    .card-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+    .card-list li {
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部导航，和 index 一样 -->
+  <header class="nav">
+    <div>
+      <div class="nav-title">DATA SCIENTIST DEVELOPMENT PATH</div>
+      <div class="nav-sub">Data Analysis · Projects · Resources</div>
+    </div>
+    <div class="nav-pill">dazzst · GitHub Pages</div>
+  </header>
+
+  <!-- 顶部说明 -->
+  <section class="hero">
+    <a href="index.html" class="back-link">← Back to Home</a>
+    <div class="hero-eyebrow">PROJECTS · KAGGLE</div>
+    <h1 class="hero-title">
+      <span class="hero-gradient">Projects & Kaggle</span><br />
+      用项目把所有知识串起来
+    </h1>
+    <p class="hero-subtitle">
+      这一部分把前面各层的技能落地到真实项目和竞赛，从端到端分析到完整 ML 项目，再到专项方向实战。
+    </p>
+  </section>
+
+  <main class="grid-wrap">
+    <div class="column">
+      <article class="card">
+        <h2 class="card-title">Kaggle 实战路径</h2>
+        <p class="card-description">
+          从入门到进阶，利用 Kaggle 作为实战练兵场。
+        </p>
+        <ul class="card-list">
+          <li>阅读《Kaggle_handbook》：竞赛流程、提交、Leaderboard 心态。</li>
+          <li>从 Tabular 任务起步，熟悉特征工程与树模型调参。</li>
+          <li>逐步尝试 NLP / CV 竞赛，接触不同模态与评估方式。</li>
+          <li>参与讨论区与分享 Notebook，学习顶尖方案。</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2 class="card-title">典型公开数据集项目</h2>
+        <p class="card-description">
+          利用经典公开数据集构建具有复用价值的项目模板。
+        </p>
+        <ul class="card-list">
+          <li>Brazilian E-Commerce Public Dataset by Olist：电商业务与用户行为分析。</li>
+          <li>端到端流程：问题定义 → 数据理解 → 特征工程 → 建模 → 业务解读。</li>
+          <li>为每个项目写 README 和报告，强调「业务故事」。</li>
+          <li>在 GitHub 上维护一个项目合集仓库，形成作品集。</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2 class="card-title">分层项目建议</h2>
+        <p class="card-description">
+          按基础 / 中级 / 高级设计自己的项目路线。
+        </p>
+        <ul class="card-list">
+          <li>基础：完整的数据分析报告（EDA + 可视化 + 结论）。</li>
+          <li>中级：经典 ML 项目（回归 / 分类）+ 模型评估与对比。</li>
+          <li>高级：专项方向项目（推荐、NLP、CV、时序等）。</li>
+          <li>每个阶段至少完成 1–2 个项目作为里程碑。</li>
+        </ul>
+      </article>
+    </div>
+  </main>
+</body>
+</html>
