@@ -2,9 +2,9 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>LEVEL 1 · Basic Data Analysis</title>
+  <title>Resources · Data Scientist Path</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- 直接复用 index.html 里的内联样式 -->
+  <!-- 和 index / projects 用同一套样式；后面你可以抽成单独的 styles.css -->
   <style>
     :root {
       --bg: #020617;
@@ -102,7 +102,6 @@
       margin: 0 auto 40px;
       padding: 0 20px 24px;
     }
-    /* 子页面这里不用真正 grid，就让卡片垂直排列 */
     .column {
       display: flex;
       flex-direction: column;
@@ -167,10 +166,18 @@
     .card-list li {
       margin-bottom: 4px;
     }
+    .card-link {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .card-link:hover {
+      border-bottom-color: var(--accent);
+    }
   </style>
 </head>
 <body>
-  <!-- 顶部导航，和 index 一样 -->
+  <!-- 顶部导航 -->
   <header class="nav">
     <div>
       <div class="nav-title">DATA SCIENTIST DEVELOPMENT PATH</div>
@@ -188,65 +195,110 @@
       持续学习的工具箱
     </h1>
     <p class="hero-subtitle">
-      整理常用书籍、教程、Cheatsheets 和经验分享，作为整条路径的「资料中枢」。
+      这里集中整理编程与工具、Cheatsheets、学习路线与经验分享，以及中高级 ML / AI 的常用资料，作为整条路径的「资料中枢」。
     </p>
   </section>
 
+  <!-- 正文卡片 -->
   <main class="grid-wrap">
     <div class="column">
+      <!-- 卡片 1：编程与工具 -->
       <article class="card">
         <h2 class="card-title">编程与工具</h2>
         <p class="card-description">
-          让你在 Python 与数据分析工具上更稳、更快。
+          提升 Python 和数据分析工具使用的稳定度与效率。
         </p>
         <ul class="card-list">
-          <li>《100天学习Python》等系统性 Python 教程。</li>
-          <li>Python Data Science Handbook 及相关 Notebook。</li>
-          <li>Jupyter / VS Code 工作流优化、调试技巧。</li>
-          <li>常用命令行工具与生产力小工具整理。</li>
+          <li>
+            <a href="https://github.com/jackfrued/Python-100-Days/blob/master/Day66-80/71.NumPy%E7%9A%84%E5%BA%94%E7%94%A8-4.md"
+               class="card-link" target="_blank">
+              100天学习Python
+            </a>
+            · 系统性的 Python 学习路线，覆盖到 NumPy 等数据分析常用库。
+          </li>
+          <li>
+            <a href="https://github.com/wangyingsm/Python-Data-Science-Handbook/blob/master/notebooks/01.05-IPython-And-Shell-Commands.ipynb"
+               class="card-link" target="_blank">
+              Python Data Science Handbook
+            </a>
+            · 经典 Python 数据科学手册，对应完整 Notebook 代码。
+          </li>
         </ul>
       </article>
 
+      <!-- 卡片 2：综合 Cheatsheets -->
       <article class="card">
-        <h2 class="card-title">Cheatsheets 与备忘单</h2>
+        <h2 class="card-title">综合 Cheatsheets</h2>
         <p class="card-description">
-          快速查阅语法、公式和常用模式，比翻书更高效。
+          快速查语法、公式和常用模式，比翻书快得多。
         </p>
         <ul class="card-list">
-          <li>综合 Data Science cheatsheets（Python、Pandas、Numpy、ML 等）。</li>
-          <li>SQL、统计学、机器学习模型的常用公式与套路。</li>
-          <li>可视化最佳实践与图表选择指南。</li>
-          <li>你自己整理的「一页纸总结」，方便复习回顾。</li>
+          <li>
+            <a href="https://github.com/FavioVazquez/ds-cheatsheets?tab=readme-ov-file"
+               class="card-link" target="_blank">
+              Data Science cheatsheets
+            </a>
+            · 覆盖 Python、Pandas、Numpy、ML 等多个主题的速查表合集。
+          </li>
         </ul>
       </article>
 
+      <!-- 卡片 3：学习路线与经验分享 -->
       <article class="card">
         <h2 class="card-title">学习路线与经验分享</h2>
         <p class="card-description">
-          借鉴他人的路径与踩坑经验，优化自己的学习策略。
+          借鉴他人的路径与踩坑经验，优化自己的学习与成长策略。
         </p>
         <ul class="card-list">
-          <li>数据分析师 / 数据科学家成长故事与路线分享。</li>
-          <li>各阶段推荐书单与课程清单。</li>
-          <li>如何寻找/设计数据项目，构建作品集。</li>
-          <li>关于职业发展、面试准备与软技能的资料。</li>
+          <li>
+            <a href="https://zhuanlan.zhihu.com/p/478792950"
+               class="card-link" target="_blank">
+              数据分析师成长
+            </a>
+            · 从路径、能力模型到实战建议的系统分享。
+          </li>
+          <li>
+            <a href="https://zhuanlan.zhihu.com/p/29813260"
+               class="card-link" target="_blank">
+              Python数据分析路径
+            </a>
+            · 围绕 Python 的数据分析学习路线总结。
+          </li>
+          <li>
+            <a href="https://www.zhihu.com/question/68476755/answer/1084320060"
+               class="card-link" target="_blank">
+              如何寻找数据分析项目
+            </a>
+            · 帮助你设计和发现高质量练手机会。
+          </li>
+          <li>
+            <a href="https://www.zhihu.com/question/431725755/answer/1596178843"
+               class="card-link" target="_blank">
+              Python黑魔法
+            </a>
+            · 一些 Python 进阶技巧与「黑魔法」集合。
+          </li>
         </ul>
       </article>
 
+      <!-- 卡片 4：中级 / 高级 ML 与 AI -->
       <article class="card">
-        <h2 class="card-title">中高级 ML 与 AI 学习</h2>
+        <h2 class="card-title">中级 / 高级 ML 与 AI</h2>
         <p class="card-description">
-          作为 Intermediate / Advanced / Expert 阶段的补充材料。
+          作为 Intermediate / Advanced / Expert 阶段的补充资料。
         </p>
         <ul class="card-list">
-          <li>系统性的 ML / DL 教程与经典课程笔记。</li>
-          <li>针对 NLP / CV / 推荐 / 时序 的专门教材与系列文章。</li>
-          <li>AI Learning 等综合性资源仓库。</li>
-          <li>你认为值得长期跟进的博主 / 公众号 / Newsletter。</li>
+          <li>
+            <a href="https://github.com/apachecn/ailearning/blob/master/docs/ml/1.md"
+               class="card-link" target="_blank">
+              AI Learning
+            </a>
+            · 包含机器学习、深度学习等内容的综合学习仓库。
+          </li>
+          <li>你可以在这里继续追加自己收藏的书单、课程和系列文章链接。</li>
         </ul>
       </article>
     </div>
   </main>
-
 </body>
 </html>
