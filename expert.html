@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>LEVEL 1 · Basic Data Analysis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 直接复用 index.html 里的内联样式 -->
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #020617;
+      --card-bg: #020617;
+      --card-border: rgba(148, 163, 184, 0.6);
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.16);
+      --text-main: #e5e7eb;
+      --text-sub: #9ca3af;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.4), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(129, 140, 248, 0.3), transparent 55%),
+        radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.25), transparent 55%),
+        #020617;
+      background-attachment: fixed;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 28px;
+      border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.94));
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-title {
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+    .nav-sub {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+    .nav-pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-sub);
+    }
+    .hero {
+      max-width: 1120px;
+      margin: 40px auto 24px;
+      padding: 0 20px;
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      margin-bottom: 10px;
+    }
+    .hero-title {
+      font-size: clamp(26px, 4.5vw, 34px);
+      font-weight: 650;
+      margin: 0 0 10px;
+      line-height: 1.15;
+    }
+    .hero-gradient {
+      background: linear-gradient(to right, #e5e7eb, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-sub);
+      max-width: 640px;
+    }
+    .back-link {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--text-sub);
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+    .back-link:hover {
+      color: var(--accent);
+    }
+    .grid-wrap {
+      max-width: 1120px;
+      margin: 0 auto 40px;
+      padding: 0 20px 24px;
+    }
+    /* 子页面这里不用真正 grid，就让卡片垂直排列 */
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .card {
+      position: relative;
+      padding: 16px 16px 18px;
+      border-radius: 18px;
+      border: 1px solid var(--card-border);
+      background:
+        radial-gradient(circle at top, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.98));
+      box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.6);
+      overflow: hidden;
+      transition:
+        transform 0.14s ease-out,
+        box-shadow 0.14s ease-out,
+        border-color 0.14s ease-out,
+        background 0.14s ease-out;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.4), transparent 60%),
+        radial-gradient(circle at 100% 0, rgba(168, 85, 247, 0.3), transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease-out;
+    }
+    .card:hover {
+      transform: translateY(-3px) translateZ(0);
+      box-shadow:
+        0 24px 60px rgba(15, 23, 42, 0.95),
+        0 0 0 1px rgba(56, 189, 248, 0.6);
+      border-color: rgba(56, 189, 248, 0.9);
+      background:
+        radial-gradient(circle at top, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.98));
+    }
+    .card:hover::before {
+      opacity: 1;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .card-description {
+      font-size: 13px;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+    .card-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--text-sub);
+    }
+    .card-list li {
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部导航，和 index 一样 -->
+  <header class="nav">
+    <div>
+      <div class="nav-title">DATA SCIENTIST DEVELOPMENT PATH</div>
+      <div class="nav-sub">Data Analysis · Projects · Resources</div>
+    </div>
+    <div class="nav-pill">dazzst · GitHub Pages</div>
+  </header>
+
+  <!-- 顶部说明 -->
+  <section class="hero">
+    <a href="index.html" class="back-link">← Back to Home</a>
+    <div class="hero-eyebrow">LEVEL 4 · EXPERT LEVEL</div>
+    <h1 class="hero-title">
+      <span class="hero-gradient">Expert Level Data Science</span><br />
+      从「会做」到「引领方向」
+    </h1>
+    <p class="hero-subtitle">
+      面向希望在数据科学方向做到专家 / 影响者的人群，强调前沿研究、大规模系统与技术影响力。
+    </p>
+  </section>
+
+  <main class="grid-wrap">
+    <div class="column">
+      <article class="card">
+        <h2 class="card-title">前沿研究与算法</h2>
+        <p class="card-description">
+          跟踪和消化前沿研究成果，把论文落地成可复用的方法论与代码。
+        </p>
+        <ul class="card-list">
+          <li>高质量论文阅读：选择、精读与笔记整理方法。</li>
+          <li>论文复现：从开源实现到在自己的数据上重现实验。</li>
+          <li>高级主题：因果推断、强化学习等高阶方法入门。</li>
+          <li>在现有项目中引入更前沿的模型与思路。</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2 class="card-title">大规模系统与架构</h2>
+        <p class="card-description">
+          从单机实验迈向支撑业务的生产级机器学习系统。
+        </p>
+        <ul class="card-list">
+          <li>分布式训练：数据并行、模型并行的基本思想。</li>
+          <li>在线推理：高并发、低延迟模型服务架构设计。</li>
+          <li>特征平台：特征存储、特征复用与一致性管理。</li>
+          <li>端到端 ML 平台：训练、部署、监控的一体化平台实践。</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2 class="card-title">影响力与技术领导力</h2>
+        <p class="card-description">
+          从个人贡献者走向在团队和社区中「放大影响」。
+        </p>
+        <ul class="card-list">
+          <li>开源贡献：参与、维护、发起开源项目的路径。</li>
+          <li>内容输出：技术博客、技术分享、线上课程的搭建。</li>
+          <li>团队层面：在产品路线与技术选型中发挥决策影响。</li>
+          <li>形成个人「方法论体系」而非零散技巧集合。</li>
+        </ul>
+      </article>
+    </div>
+  </main>
+</body>
+</html>
